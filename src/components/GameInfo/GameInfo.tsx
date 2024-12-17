@@ -1,6 +1,7 @@
 import styles from "./GameInfo.module.css";
-import { SYMBOL_O, SYMBOL_X, SymbolType } from "../../types/index";
+import { SymbolType } from "../../types/index";
 import GameSymbol from "../GameSymbol/GameSymbol";
+import { SYMBOL_O, SYMBOL_X } from "@/constants";
 
 type GameInfoPropsType = {
     currentStep: SymbolType;
@@ -31,7 +32,10 @@ function GameInfo({
                 <div className={GameResultClassName}>
                     {isWinner ? (
                         <span>
-                            Победитель: <GameSymbol symbol={currentStep} />
+                            <span className={styles["game-info-title"]}>
+                                Победитель:
+                            </span>
+                            <GameSymbol symbol={currentStep} />
                         </span>
                     ) : (
                         <span>О, это ничья. Сыграем еще раз?</span>
@@ -50,7 +54,8 @@ function GameInfo({
     return (
         <div className={styles["game-info"]}>
             <div className={styles["game-step"]}>
-                Ходит: <GameSymbol symbol={currentStep} />
+                <span className={styles["game-info-title"]}> Ходит: </span>
+                <GameSymbol symbol={currentStep} />
             </div>
         </div>
     );

@@ -1,6 +1,7 @@
 import styles from "./GameCell.module.css";
-import { CellType, SYMBOL_O, SYMBOL_X, SymbolType } from "../../types/index";
+import { CellType, SymbolType } from "../../types/index";
 import GameSymbol from "../GameSymbol/GameSymbol";
+import { SYMBOL_O, SYMBOL_X } from "@/constants";
 
 type GameCellPropsType = {
     cell: CellType;

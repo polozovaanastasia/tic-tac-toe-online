@@ -17,8 +17,7 @@
     color: var(--primary-color);
 }
 
-.game-result .symbol,
-.game-step .symbol {
+.game-result .symbol {
     margin-left: 5px;
 }
 эта вложенность не работает в css module

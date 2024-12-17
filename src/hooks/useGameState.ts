@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { CellType, SYMBOL_O, SYMBOL_X, SymbolType } from "../types/index";
+import { CellType, SymbolType } from "../types/index";
+import { SYMBOL_O, SYMBOL_X } from "@/constants";
 
 function useGameState() {
     const [cells, setCells] = useState<Array<CellType>>(Array(9).fill(null));

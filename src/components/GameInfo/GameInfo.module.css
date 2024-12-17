@@ -15,11 +15,15 @@
     align-items: center;
 }
 
+.game-info-title {
+    margin-right: 5px;
+}
+
 .game-result {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 63px;
+    height: 60px;
     box-sizing: border-box;
     background-color: var(--primary-color);
     color: #fff;

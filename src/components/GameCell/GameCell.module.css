@@ -11,11 +11,6 @@
     cursor: pointer;
 }
 
-.game_disabled .game-cell {
-    background-color: var(--primary-background_light);
-    cursor: default;
-}
-
 .game-cell.game-cell_winner.game-cell_O {
     background-color: var(--background_O);
 }
