@@ -1,0 +1,26 @@
+@import url("../../assets/styles/variables.css");
+
+.symbol {
+    font-size: 35px;
+}
+
+.symbol-o {
+    color: var(--color_O);
+}
+
+.symbol-x {
+    color: var(--color_X);
+}
+
+/* .game_disabled .symbol-o,
+.game_disabled .symbol-x {
+    color: var(--primary-color);
+}
+
+.game-result .symbol,
+.game-step .symbol {
+    margin-left: 5px;
+}
+эта вложенность не работает в css module
+todo: понять, как поправить
+*/

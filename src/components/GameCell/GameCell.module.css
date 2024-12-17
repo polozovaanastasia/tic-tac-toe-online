@@ -1,0 +1,33 @@
+@import url("../../assets/styles/variables.css");
+
+.game-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 0 0 33.333%;
+    height: 130px;
+    border: 1px solid var(--primary-color);
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.game_disabled .game-cell {
+    background-color: var(--primary-background_light);
+    cursor: default;
+}
+
+.game-cell.game-cell_winner.game-cell_O {
+    background-color: var(--background_O);
+}
+
+.game-cell.game-cell_winner.game-cell_X {
+    background-color: var(--background_X);
+}
+
+.game-cell.game-cell_winner.game-cell_O {
+    background-color: var(--background_O);
+}
+
+.game-cell.game-cell_winner.game-cell_X {
+    background-color: var(--background_X);
+}
