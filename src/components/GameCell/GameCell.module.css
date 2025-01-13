@@ -1,5 +1,3 @@
-@import url("../../assets/styles/variables.css");
-
 .game-cell {
     display: flex;
     justify-content: center;

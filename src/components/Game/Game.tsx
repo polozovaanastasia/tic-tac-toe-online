@@ -22,7 +22,7 @@ function Game() {
                     restartGame={restartGame}
                 />
                 <div
-                    className={`${styles["game-fild"]} ${
+                    className={`${styles["game-field"]} ${
                         winnerSequence || isDraw
                             ? styles["game_disabled"]
                             : styles["game_started"]
@@ -37,8 +37,6 @@ function Game() {
                             <GameCell
                                 key={index}
                                 cell={cell}
-                                index={index}
-                                currentStep={currentStep}
                                 isWinner={!!winnerSequence?.includes(index)}
                                 onClickHandler={onClickHandler}
                             />

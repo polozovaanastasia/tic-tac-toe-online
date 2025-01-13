@@ -2,6 +2,7 @@ import styles from "./GameInfo.module.css";
 import { SymbolType } from "../../types/index";
 import GameSymbol from "../GameSymbol/GameSymbol";
 import { SYMBOL_O, SYMBOL_X } from "@/constants";
+import RestartButton from "../RestartGame/RestartGame";
 
 type GameInfoPropsType = {
     currentStep: SymbolType;
@@ -41,12 +42,7 @@ function GameInfo({
                         <span>О, это ничья. Сыграем еще раз?</span>
                     )}
 
-                    <button
-                        className={styles["game-restart"]}
-                        onClick={restartGame}
-                    >
-                        Restart
-                    </button>
+                    <RestartButton onClick={restartGame} />
                 </div>
             </div>
         );

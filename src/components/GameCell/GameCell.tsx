@@ -1,23 +1,15 @@
 import styles from "./GameCell.module.css";
-import { CellType, SymbolType } from "../../types/index";
+import { CellType } from "../../types/index";
 import GameSymbol from "../GameSymbol/GameSymbol";
 import { SYMBOL_O, SYMBOL_X } from "@/constants";
 
 type GameCellPropsType = {
     cell: CellType;
-    index: number;
-    currentStep: SymbolType;
     isWinner: boolean;
     onClickHandler: () => void;
 };
 
-function GameCell({
-    cell,
-    index,
-    currentStep,
-    isWinner,
-    onClickHandler,
-}: GameCellPropsType) {
+function GameCell({ cell, isWinner, onClickHandler }: GameCellPropsType) {
     const GameCellClassName = `${styles["game-cell"]} ${
         isWinner ? styles["game-cell_winner"] : ""
     } ${

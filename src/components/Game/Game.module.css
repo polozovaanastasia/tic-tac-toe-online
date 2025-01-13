@@ -1,5 +1,3 @@
-@import url("../../assets/styles/variables.css");
-
 .app,
 .game {
     width: 100%;
@@ -17,14 +15,11 @@
     height: 400px;
 }
 
-.game-fild {
+.game-field {
     display: flex;
     flex-wrap: wrap;
     margin-top: 10px;
     border: 1px solid var(--primary-color);
-}
-
-.game_started {
 }
 
 .game_disabled > span {
