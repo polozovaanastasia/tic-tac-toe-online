@@ -1,11 +1,10 @@
 .game-title__link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     font-size: 12px;
     text-decoration: none;
     color: #0d9488;
-}
-
-.game-title__link svg {
-    margin-right: 8px;
 }
 
 .game-title__title {
@@ -27,9 +26,5 @@
 .game-title__time {
     display: flex;
     align-items: center;
-}
-
-.game-title__player-count svg,
-.game-title__time svg {
-    margin-right: 4px;
+    gap: 4px;
 }

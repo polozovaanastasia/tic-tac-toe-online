@@ -4,8 +4,10 @@ import ArrowLeftIcon from "@/components/Icons/ArrowLeftIcon";
 import StarIcon from "@/components/Icons/StarIcon";
 import UserIcon from "@/components/Icons/UserIcon";
 import TimeIcon from "@/components/Icons/TimeIcon";
+import Profile from "@/components/Profile/Profile";
 
 function GameTitle() {
+    const avatarSrc = "/images/avatar.png";
     return (
         <div className={styles["game-title"]}>
             <Link className={styles["game-title__link"]} href="#">
@@ -22,6 +24,12 @@ function GameTitle() {
                     <TimeIcon />1 мин на ход
                 </span>
             </div>
+            <Profile
+                name="Nastia"
+                rating={230}
+                avatarSrc={avatarSrc}
+                label="X"
+            />
         </div>
     );
 }

@@ -1,0 +1,60 @@
+.profile__player-info,
+.profile__player {
+    display: flex;
+}
+
+.profile__player {
+    align-items: center;
+    gap: 10px;
+    padding: 0;
+    margin-left: auto;
+    text-align: start;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.profile__avatar {
+    position: relative;
+}
+
+.profile__label {
+    position: absolute;
+    top: -3px;
+    left: -4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    box-shadow: 0 1px 2px -1px rgba(0, 0, 0, 0.1),
+        0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.profile__label_x {
+    background: white url("/icons/symbol-x_icon.svg") center no-repeat;
+}
+
+.profile__label_o {
+    background: white url("/icons/symbol-o_icon.svg") center no-repeat;
+}
+
+.profile__player-info {
+    flex-direction: column;
+}
+
+.profile__player-info-name {
+    font-size: 18px;
+    color: #0d9488;
+    transition: color 0.3s;
+}
+
+.profile__player-info-name:hover {
+    color: #14b8a6;
+}
+
+.profile__player-info-rating {
+    font-size: 12px;
+    color: #94a3b8;
+}

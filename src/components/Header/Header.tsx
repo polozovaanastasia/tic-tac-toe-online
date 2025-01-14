@@ -1,9 +1,10 @@
 import Image from "next/image";
 import styles from "./Header.module.css";
 import logoSrc from "../../../public/images/logo.svg";
-import avatarSrc from "../../../public/images/avatar.png";
+import Profile from "../Profile/Profile";
 
 function Header() {
+    const avatarSrc = "/images/avatar.png";
     return (
         <header className={styles["header"]}>
             <Image
@@ -15,22 +16,7 @@ function Header() {
             />
             <button className={styles["header__button"]}>Играть</button>
             <button className={styles["header__player"]}>
-                <Image
-                    unoptimized
-                    className={styles["header__avatar"]}
-                    src={avatarSrc}
-                    alt="avatar"
-                    width={48}
-                    height={48}
-                />
-                <span className={styles["header__player-info"]}>
-                    <span className={styles["header__player-info-name"]}>
-                        PolozovaA
-                    </span>
-                    <span className={styles["header__player-info-rating"]}>
-                        Рейтинг: 23
-                    </span>
-                </span>
+                <Profile name="Polozova" rating={230} avatarSrc={avatarSrc} />
                 {/* <span className={styles["header__player-icon"]}>
                 </span> */}
                 <svg
