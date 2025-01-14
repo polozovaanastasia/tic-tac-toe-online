@@ -1,0 +1,35 @@
+.game-title__link {
+    font-size: 12px;
+    text-decoration: none;
+    color: #0d9488;
+}
+
+.game-title__link svg {
+    margin-right: 8px;
+}
+
+.game-title__title {
+    margin: 0;
+    margin-top: -5px;
+    font-size: 36px;
+    font-weight: 400;
+    color: white;
+}
+
+.game-title__info {
+    display: flex;
+    gap: 12px;
+    font-size: 12px;
+    color: #94a3b8;
+}
+
+.game-title__player-count,
+.game-title__time {
+    display: flex;
+    align-items: center;
+}
+
+.game-title__player-count svg,
+.game-title__time svg {
+    margin-right: 4px;
+}

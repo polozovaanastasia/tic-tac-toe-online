@@ -4,8 +4,9 @@
     align-items: center;
     flex: 0 0 33.333%;
     height: 130px;
-    border: 1px solid var(--primary-color);
+    border: 1px solid #282c35;
     box-sizing: border-box;
+    background-color: white;
     cursor: pointer;
 }
 

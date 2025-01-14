@@ -2,19 +2,11 @@
     width: 400px;
 }
 
-.game {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex: 1 1 auto;
-    background-color: #282c35;
-}
-
 .game-field {
     display: flex;
     flex-wrap: wrap;
     margin-top: 10px;
-    border: 1px solid var(--primary-color);
+    border: 1px solid #282c35;
 }
 
 .game_disabled > span {
