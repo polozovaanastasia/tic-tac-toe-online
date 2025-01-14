@@ -1,5 +1,5 @@
 import styles from "./GameInfo.module.css";
-import { SymbolType } from "../../types/index";
+import { SymbolType } from "../../../types/index";
 import GameSymbol from "../GameSymbol/GameSymbol";
 import { SYMBOL_O, SYMBOL_X } from "@/constants";
 import RestartButton from "../RestartGame/RestartGame";

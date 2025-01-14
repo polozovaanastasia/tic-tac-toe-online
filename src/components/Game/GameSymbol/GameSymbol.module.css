@@ -1,0 +1,11 @@
+.symbol {
+    font-size: 35px;
+}
+
+.symbol-o {
+    color: var(--color_O);
+}
+
+.symbol-x {
+    color: var(--color_X);
+}

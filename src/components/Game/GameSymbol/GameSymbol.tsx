@@ -1,5 +1,5 @@
 import styles from "./GameSymbol.module.css";
-import { CellType } from "../../types/index";
+import { CellType } from "../../../types/index";
 import { SYMBOL_O, SYMBOL_X } from "@/constants";
 
 type GameSymbolPropsType = {

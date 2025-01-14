@@ -1,5 +1,5 @@
-import GameCell from "../GameCell/GameCell";
-import GameInfo from "../GameInfo/GameInfo";
+import GameCell from "./GameCell/GameCell";
+import GameInfo from "./GameInfo/GameInfo";
 import styles from "./Game.module.css";
 import useGameState from "@/hooks/useGameState";
 
@@ -13,8 +13,8 @@ function Game() {
         restartGame,
     } = useGameState();
     return (
-        <div className={styles.app}>
-            <div className={styles.game}>
+        <div className={styles.game}>
+            <div className={styles.game__container}>
                 <GameInfo
                     currentStep={currentStep}
                     isWinner={Boolean(winnerSequence)}
