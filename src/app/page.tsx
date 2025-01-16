@@ -28,6 +28,7 @@ function Home() {
                             time: "00:51",
                         },
                     ]}
+                    className="container-margins"
                 />
                 <Game />
             </main>

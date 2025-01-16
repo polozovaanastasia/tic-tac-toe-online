@@ -39,3 +39,8 @@
 .game-player > div:first-child {
     width: 180px;
 }
+
+.container-margins {
+    margin-top: 17px;
+    margin-bottom: 24px;
+}

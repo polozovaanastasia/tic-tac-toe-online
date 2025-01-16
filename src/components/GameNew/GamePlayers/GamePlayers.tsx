@@ -10,12 +10,13 @@ type PlayerType = {
 
 type GamePlayersPropsType = {
     players: Array<PlayerType>;
+    className: string;
 };
 
-function GamePlayers({ players }: GamePlayersPropsType) {
+function GamePlayers({ players, className }: GamePlayersPropsType) {
     const avatarSrc = "/images/avatar.png";
     return (
-        <div className={styles["game-players"]}>
+        <div className={`${styles["game-players"]} ${styles[className]}`}>
             {players.map((player) => (
                 <div key={player.id} className={styles["game-player"]}>
                     <Profile

@@ -3,6 +3,7 @@ import styles from "./Header.module.css";
 import logoSrc from "../../../public/images/logo.svg";
 import Profile from "../Profile/Profile";
 import ArrowDownIcon from "../Icons/ArrowDownIcon";
+import Button from "../uikit/Button/Button";
 
 function Header() {
     const avatarSrc = "/images/avatar.png";
@@ -15,7 +16,12 @@ function Header() {
                 width={163}
                 height={53}
             />
-            <button className={styles["header__button"]}>Играть</button>
+            <Button
+                text="Играть"
+                variant="primary"
+                size="lg"
+                onClick={() => {}}
+            />
             <button className={styles["header__player"]}>
                 <Profile name="Polozova" rating={230} avatarSrc={avatarSrc} />
                 <ArrowDownIcon />
