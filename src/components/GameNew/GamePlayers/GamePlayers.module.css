@@ -1,0 +1,41 @@
+.game-players,
+.game-player,
+.game-player__time {
+    display: flex;
+}
+
+.game-players {
+    flex-wrap: wrap;
+    padding: 16px 32px;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 2px 4px -2px rgb(255, 255, 255, 0.1),
+        0 4px 6px -1px rgb(255, 255, 255, 0.1);
+}
+
+.game-player__time {
+    align-items: center;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.game-player > span {
+    display: inline-block;
+    width: 1px;
+    height: 24px;
+    background-color: #e2e8f0;
+}
+
+.game-player {
+    align-items: center;
+    gap: 12px;
+    flex-basis: 50%;
+}
+
+.game-player:nth-child(2n) {
+    flex-direction: row-reverse;
+}
+
+.game-player > div:first-child {
+    width: 180px;
+}

@@ -9,7 +9,7 @@
     flex: 0 0 auto;
     padding: 24px 32px;
     background-color: white;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
 }
 
 .header__logo {
@@ -41,7 +41,13 @@
     text-align: start;
     background-color: white;
     border: none;
+    color: #0d9488;
+    transition: color 0.3s;
     cursor: pointer;
+}
+
+.header__player:hover {
+    color: #14b8a6;
 }
 
 .header__player-info {
