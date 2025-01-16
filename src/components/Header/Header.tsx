@@ -3,7 +3,7 @@ import styles from "./Header.module.css";
 import logoSrc from "../../../public/images/logo.svg";
 import Profile from "../Profile/Profile";
 import ArrowDownIcon from "../Icons/ArrowDownIcon";
-import Button from "../uikit/Button/Button";
+import UIButton from "../uikit/Button/UIButton";
 
 function Header() {
     const avatarSrc = "/images/avatar.png";
@@ -16,7 +16,7 @@ function Header() {
                 width={163}
                 height={53}
             />
-            <Button
+            <UIButton
                 text="Играть"
                 variant="primary"
                 size="lg"

@@ -1,11 +1,11 @@
-.button {
+.ui-button {
     font-family: inherit;
     cursor: pointer;
     box-sizing: border-box;
     transition: background-color 0.3s, border-color 0.3s, color 0.3s;
 }
 
-.button-primary {
+.ui-button-primary {
     color: white;
     background-color: #0d9488;
     border: none;
@@ -13,36 +13,36 @@
         0 1px 3px 0 rgba(255, 255, 255, 0.1);
 }
 
-.button-primary:hover {
+.ui-button-primary:hover {
     background-color: #14b8a6;
 }
 
-.button-outline {
+.ui-button-outline {
     background-color: transparent;
     border: 1px solid #0d9488;
     color: #0d9488;
 }
 
-.button-outline:hover {
+.ui-button-outline:hover {
     border-color: #14b8a6;
     color: #14b8a6;
 }
 
-.button-lg {
+.ui-button-lg {
     padding: 8px 48px;
     font-size: 24px;
     border-radius: 8px;
     text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.button-md {
+.ui-button-md {
     padding: 7.5px 24px;
     font-size: 14px;
     border-radius: 4px;
     text-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
 }
 
-.button-outline.button-lg,
-.button-outline.button-md {
+.ui-button-outline.ui-button-lg,
+.ui-button-outline.ui-button-md {
     text-shadow: none;
 }
