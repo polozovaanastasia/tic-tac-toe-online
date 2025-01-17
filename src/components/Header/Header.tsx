@@ -16,12 +16,9 @@ function Header() {
                 width={163}
                 height={53}
             />
-            <UIButton
-                text="Играть"
-                variant="primary"
-                size="lg"
-                onClick={() => {}}
-            />
+            <UIButton variant="primary" size="lg" onClick={() => {}}>
+                Играть
+            </UIButton>
             <button className={styles["header__player"]}>
                 <Profile name="Polozova" rating={230} avatarSrc={avatarSrc} />
                 <ArrowDownIcon />

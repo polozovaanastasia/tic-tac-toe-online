@@ -1,0 +1,19 @@
+.game__field {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.game__cell {
+    font-size: 7px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border: 1px solid #e2e8f0;
+    border: 1px solid black;
+    margin-left: -1px;
+    margin-top: -1px;
+}

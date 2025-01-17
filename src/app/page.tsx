@@ -2,8 +2,8 @@
 import Header from "@/components/Header/Header";
 import styles from "./page.module.css";
 import GameTitle from "@/components/GameNew/GameTitle/GameTitle";
-import Game from "@/components/Game/Game";
 import GamePlayers from "@/components/GameNew/GamePlayers/GamePlayers";
+import GameNew from "@/components/GameNew/GameNew";
 
 function Home() {
     return (
@@ -30,7 +30,7 @@ function Home() {
                     ]}
                     className="container-margins"
                 />
-                <Game />
+                <GameNew currentStep="X" />
             </main>
         </div>
     );

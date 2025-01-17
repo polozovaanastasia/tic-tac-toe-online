@@ -1,7 +1,6 @@
 .ui-button {
     font-family: inherit;
     cursor: pointer;
-    box-sizing: border-box;
     transition: background-color 0.3s, border-color 0.3s, color 0.3s;
 }
 
@@ -24,8 +23,7 @@
 }
 
 .ui-button-outline:hover {
-    border-color: #14b8a6;
-    color: #14b8a6;
+    background-color: rgb(20, 184, 165, 0.1);
 }
 
 .ui-button-lg {

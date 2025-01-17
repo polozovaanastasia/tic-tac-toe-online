@@ -6,21 +6,29 @@ type UIButtonVariantType = "primary" | "outline";
 type UIButtonSizeType = "lg" | "md" | "sm";
 
 type UIButtonPropsType = {
-    text: string;
+    children: React.ReactNode;
     variant: UIButtonVariantType;
     size: UIButtonSizeType;
     onClick: () => void;
+    className?: string;
 };
 
-function UIButton({ text, variant, size, onClick }: UIButtonPropsType) {
+function UIButton({
+    children,
+    variant,
+    size,
+    onClick,
+    className = "",
+}: UIButtonPropsType) {
     const UIButtonClasses = classNames(
         styles["ui-button"],
         styles[`ui-button-${variant}`],
-        styles[`ui-button-${size}`]
+        styles[`ui-button-${size}`],
+        styles[className]
     );
     return (
         <button className={UIButtonClasses} onClick={onClick}>
-            {text}
+            {children}
         </button>
     );
 }
