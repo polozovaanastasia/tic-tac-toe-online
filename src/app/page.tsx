@@ -2,8 +2,8 @@
 import Header from "@/components/Header/Header";
 import styles from "./page.module.css";
 import GameTitle from "@/components/GameNew/GameTitle/GameTitle";
-import GamePlayers from "@/components/GameNew/GamePlayers/GamePlayers";
-import GameNew from "@/components/GameNew/GameNew";
+import GameInfo from "@/components/GameNew/GamePlayers/GameInfo";
+import GameField from "@/components/GameNew/GameField/GameField";
 
 function Home() {
     return (
@@ -11,7 +11,7 @@ function Home() {
             <Header />
             <main className={styles["app-content"]}>
                 <GameTitle />
-                <GamePlayers
+                <GameInfo
                     players={[
                         { id: 1, name: "Polozova", rating: 230, time: "00:08" },
                         { id: 2, name: "Alex", rating: 220, time: "01:05" },
@@ -30,7 +30,7 @@ function Home() {
                     ]}
                     className="container-margins"
                 />
-                <GameNew currentStep="X" />
+                <GameField currentStep="X" />
             </main>
         </div>
     );

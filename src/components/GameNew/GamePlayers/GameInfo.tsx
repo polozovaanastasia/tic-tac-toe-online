@@ -1,5 +1,5 @@
 import Profile from "@/components/Profile/Profile";
-import styles from "./GamePlayers.module.css";
+import styles from "./GameInfo.module.css";
 
 type PlayerType = {
     id: number;
@@ -8,17 +8,17 @@ type PlayerType = {
     time: string;
 };
 
-type GamePlayersPropsType = {
+type GameInfoPropsType = {
     players: Array<PlayerType>;
     className: string;
 };
 
-function GamePlayers({ players, className }: GamePlayersPropsType) {
+function GameInfo({ players, className }: GameInfoPropsType) {
     const avatarSrc = "/images/avatar.png";
     return (
-        <div className={`${styles["game-players"]} ${styles[className]}`}>
+        <div className={`${styles["game-info"]} ${styles[className]}`}>
             {players.map((player) => (
-                <div key={player.id} className={styles["game-player"]}>
+                <div key={player.id} className={styles["game-info__section"]}>
                     <Profile
                         name={player.name}
                         rating={player.rating}
@@ -26,7 +26,7 @@ function GamePlayers({ players, className }: GamePlayersPropsType) {
                         label="X"
                     />
                     <span></span>
-                    <div className={styles["game-player__time"]}>
+                    <div className={styles["game-info__time"]}>
                         {player.time}
                     </div>
                 </div>
@@ -35,4 +35,4 @@ function GamePlayers({ players, className }: GamePlayersPropsType) {
     );
 }
 
-export default GamePlayers;
+export default GameInfo;

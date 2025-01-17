@@ -1,10 +1,9 @@
-.game-players,
-.game-player,
-.game-player__time {
+.game-info,
+.game-info__section {
     display: flex;
 }
 
-.game-players {
+.game-info {
     flex-wrap: wrap;
     padding: 16px 32px;
     background-color: white;
@@ -13,30 +12,30 @@
         0 4px 6px -1px rgb(255, 255, 255, 0.1);
 }
 
-.game-player__time {
+.game-info__time {
     align-items: center;
     font-size: 18px;
     font-weight: 600;
 }
 
-.game-player > span {
+.game-info__section > span {
     display: inline-block;
     width: 1px;
     height: 24px;
     background-color: #e2e8f0;
 }
 
-.game-player {
+.game-info__section {
     align-items: center;
     gap: 12px;
     flex-basis: 50%;
 }
 
-.game-player:nth-child(2n) {
+.game-info__section:nth-child(2n) {
     flex-direction: row-reverse;
 }
 
-.game-player > div:first-child {
+.game-info__section > div:first-child {
     width: 180px;
 }
 
