@@ -1,4 +1,10 @@
-import { SymbolType } from "@/types";
+import { SizesType, SymbolType } from "@/types";
+
+export const SIZES: SizesType = {
+    LARGE: "lg",
+    MEDIUM: "md",
+    SMALL: "sm",
+};
 
 export const GAME_SYMBOL: SymbolType = {
     ZERO: "zero",

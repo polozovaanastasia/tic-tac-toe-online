@@ -1,9 +1,10 @@
+import { SizesValueType } from "@/types";
 import styles from "./UIButton.module.css";
 import classNames from "classnames";
 
 type UIButtonVariantType = "primary" | "outline";
 
-type UIButtonSizeType = "lg" | "md" | "sm";
+type UIButtonSizeType = SizesValueType;
 
 type UIButtonPropsType = {
     children: React.ReactNode;

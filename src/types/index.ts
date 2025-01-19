@@ -1,5 +1,13 @@
 export type CellType = null | SymbolValueType;
 
+export type SizesType = {
+    LARGE: "lg";
+    MEDIUM: "md";
+    SMALL: "sm";
+};
+
+export type SizesValueType = SizesType[keyof SizesType];
+
 export type SymbolType = {
     ZERO: "zero";
     CROSS: "cross";

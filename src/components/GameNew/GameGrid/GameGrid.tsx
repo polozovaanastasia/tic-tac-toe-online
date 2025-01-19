@@ -1,20 +1,27 @@
 import styles from "./GameGrid.module.css";
 import GameCell from "./GameCell/GameCell";
-import ZeroIcon from "@/components/Icons/ZeroIcon";
 import { CellType, SymbolValueType } from "@/types";
+import GameSymbol from "../GameSymbol/GameSymbol";
+import { SIZES } from "@/constants";
 
 type GameGridPropsType = {
     cells: Array<CellType>;
     currentMove: SymbolValueType;
+    onCellClick: (cell: CellType, i: number) => void;
 };
 
-function GameGrid({ cells, currentMove }: GameGridPropsType) {
+function GameGrid({ cells, currentMove, onCellClick }: GameGridPropsType) {
     return (
         <div className={styles["game-grid"]}>
-            {cells.map((_, i) => {
+            {cells.map((cell, i) => {
+                function onClick() {
+                    onCellClick(currentMove, i);
+                }
                 return (
-                    <GameCell key={i} onClick={() => {}}>
-                        {<ZeroIcon width={20} height={20} />}
+                    <GameCell key={i} onClick={onClick}>
+                        {cell && (
+                            <GameSymbol symbol={cell} size={SIZES.MEDIUM} />
+                        )}
                     </GameCell>
                 );
             })}

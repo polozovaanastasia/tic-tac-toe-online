@@ -4,7 +4,7 @@ import styles from "./GameField.module.css";
 import { CellType, SymbolValueType } from "@/types";
 import GameMoveInfo from "./GameMoveInfo/GameMoveInfo";
 import { useState } from "react";
-import { GAME_SYMBOL, MOVE_ORDER } from "@/constants";
+import { GAME_SYMBOL, MOVE_ORDER, SIZES } from "@/constants";
 
 function GameField() {
     const [cells, setCells] = useState<Array<CellType>>(() =>
@@ -21,21 +21,19 @@ function GameField() {
         return MOVE_ORDER[nextMoveIndex] || MOVE_ORDER[0];
     }
 
-    // function renderMoveIcons(symbol: SymbolValueType) {
-    //     if (symbol === GAME_SYMBOL.ZERO) return <ZeroIcon />;
-    //     if (symbol === GAME_SYMBOL.CROSS) return <CrossIcon />;
-    //     if (symbol === GAME_SYMBOL.SQUARE) return <SquareIcon />;
-    //     if (symbol === GAME_SYMBOL.TRIANGLE) return <TriangleIcon />;
-    // }
-
-    console.log(currentMove);
+    function onCellClickHandler(cell: CellType, index: number) {
+        const cellsCopy: Array<CellType> = [...cells];
+        cellsCopy[index] = cell;
+        setCells(cellsCopy);
+        setCurrentMove(nextMove);
+    }
 
     const actions = (
         <>
-            <UIButtons variant="primary" size="md" onClick={() => {}}>
+            <UIButtons variant="primary" size={SIZES.MEDIUM} onClick={() => {}}>
                 Ничья
             </UIButtons>
-            <UIButtons variant="outline" size="md" onClick={() => {}}>
+            <UIButtons variant="outline" size={SIZES.MEDIUM} onClick={() => {}}>
                 Сдаться
             </UIButtons>
         </>
@@ -47,7 +45,11 @@ function GameField() {
                 currentMove={currentMove}
                 nextMove={nextMove}
             ></GameMoveInfo>
-            <GameGrid cells={cells} currentMove={currentMove} />
+            <GameGrid
+                cells={cells}
+                currentMove={currentMove}
+                onCellClick={onCellClickHandler}
+            />
         </div>
     );
 }

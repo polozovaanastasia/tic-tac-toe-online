@@ -3,7 +3,7 @@ import { JSX } from "react";
 import styles from "./GameCell.module.css";
 
 type GameCellPropsType = {
-    children: JSX.Element;
+    children: JSX.Element | null;
     onClick: () => void;
 };
 
