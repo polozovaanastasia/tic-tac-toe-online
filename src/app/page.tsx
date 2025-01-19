@@ -2,7 +2,7 @@
 import Header from "@/components/Header/Header";
 import styles from "./page.module.css";
 import GameTitle from "@/components/GameNew/GameTitle/GameTitle";
-import GameInfo from "@/components/GameNew/GamePlayers/GameInfo";
+import GameInfo from "@/components/GameNew/GameInfo/GameInfo";
 import GameField from "@/components/GameNew/GameField/GameField";
 
 function Home() {
@@ -30,7 +30,7 @@ function Home() {
                     ]}
                     className="container-margins"
                 />
-                <GameField currentStep="X" />
+                <GameField />
             </main>
         </div>
     );

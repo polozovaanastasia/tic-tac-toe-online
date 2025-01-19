@@ -1,5 +1,6 @@
 import Profile from "@/components/Profile/Profile";
 import styles from "./GameInfo.module.css";
+import { GAME_SYMBOL } from "@/constants";
 
 type PlayerType = {
     id: number;
@@ -23,7 +24,7 @@ function GameInfo({ players, className }: GameInfoPropsType) {
                         name={player.name}
                         rating={player.rating}
                         avatarSrc={avatarSrc}
-                        label="X"
+                        label={GAME_SYMBOL.CROSS}
                     />
                     <span></span>
                     <div className={styles["game-info__time"]}>

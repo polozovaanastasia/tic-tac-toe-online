@@ -3,7 +3,7 @@ type IconPropsType = {
     height?: number;
 };
 
-function TriangleIcon({ width = 12, height = 12 }: IconPropsType) {
+function SquareIcon({ width = 12, height = 12 }: IconPropsType) {
     return (
         <svg
             width={width}
@@ -20,4 +20,4 @@ function TriangleIcon({ width = 12, height = 12 }: IconPropsType) {
     );
 }
 
-export default TriangleIcon;
+export default SquareIcon;

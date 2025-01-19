@@ -1,37 +1,53 @@
 import GameGrid from "../GameGrid/GameGrid";
 import UIButtons from "../../uikit/Button/UIButton";
 import styles from "./GameField.module.css";
-import { SymbolType } from "@/types";
-import ZeroIcon from "../../Icons/ZeroIcon";
-import CrossIcon from "../../Icons/СrossIcon";
+import { CellType, SymbolValueType } from "@/types";
+import GameMoveInfo from "./GameMoveInfo/GameMoveInfo";
+import { useState } from "react";
+import { GAME_SYMBOL, MOVE_ORDER } from "@/constants";
 
-type GamePropsType = {
-    currentStep: SymbolType;
-};
+function GameField() {
+    const [cells, setCells] = useState<Array<CellType>>(() =>
+        new Array(19 * 19).fill(null)
+    );
+    const [currentMove, setCurrentMove] = useState<SymbolValueType>(
+        GAME_SYMBOL.TRIANGLE
+    );
 
-function GameField({ currentStep }: GamePropsType) {
-    console.log(currentStep);
+    const nextMove = getNextMove();
+
+    function getNextMove() {
+        const nextMoveIndex = MOVE_ORDER.indexOf(currentMove) + 1;
+        return MOVE_ORDER[nextMoveIndex] || MOVE_ORDER[0];
+    }
+
+    // function renderMoveIcons(symbol: SymbolValueType) {
+    //     if (symbol === GAME_SYMBOL.ZERO) return <ZeroIcon />;
+    //     if (symbol === GAME_SYMBOL.CROSS) return <CrossIcon />;
+    //     if (symbol === GAME_SYMBOL.SQUARE) return <SquareIcon />;
+    //     if (symbol === GAME_SYMBOL.TRIANGLE) return <TriangleIcon />;
+    // }
+
+    console.log(currentMove);
+
+    const actions = (
+        <>
+            <UIButtons variant="primary" size="md" onClick={() => {}}>
+                Ничья
+            </UIButtons>
+            <UIButtons variant="outline" size="md" onClick={() => {}}>
+                Сдаться
+            </UIButtons>
+        </>
+    );
     return (
         <div className={styles["game-field"]}>
-            <div className={styles["game-field__header"]}>
-                <div className={styles["game-field__header-info"]}>
-                    <div className={styles["header-info__title"]}>
-                        Ход:
-                        <ZeroIcon width={20} height={20} />
-                    </div>
-                    <div className={styles["header-info__subtitle"]}>
-                        Следующий:
-                        <CrossIcon />
-                    </div>
-                </div>
-                <UIButtons variant="primary" size="md" onClick={() => {}}>
-                    Ничья
-                </UIButtons>
-                <UIButtons variant="outline" size="md" onClick={() => {}}>
-                    Сдаться
-                </UIButtons>
-            </div>
-            <GameGrid />
+            <GameMoveInfo
+                actions={actions}
+                currentMove={currentMove}
+                nextMove={nextMove}
+            ></GameMoveInfo>
+            <GameGrid cells={cells} currentMove={currentMove} />
         </div>
     );
 }

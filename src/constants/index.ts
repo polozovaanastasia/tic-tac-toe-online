@@ -1,4 +1,15 @@
 import { SymbolType } from "@/types";
 
-export const SYMBOL_X: SymbolType = "X";
-export const SYMBOL_O: SymbolType = "O";
+export const GAME_SYMBOL: SymbolType = {
+    ZERO: "zero",
+    CROSS: "cross",
+    SQUARE: "square",
+    TRIANGLE: "triangle",
+};
+
+export const MOVE_ORDER = [
+    GAME_SYMBOL.ZERO,
+    GAME_SYMBOL.CROSS,
+    GAME_SYMBOL.SQUARE,
+    GAME_SYMBOL.TRIANGLE,
+];

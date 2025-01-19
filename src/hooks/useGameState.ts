@@ -1,12 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { CellType, SymbolType } from "../types/index";
-import { SYMBOL_O, SYMBOL_X } from "@/constants";
+import { CellType, SymbolValueType } from "../types/index";
+import { GAME_SYMBOL } from "@/constants";
 
 function useGameState() {
     const [cells, setCells] = useState<Array<CellType>>(Array(9).fill(null));
-    const [currentStep, setCurrentStep] = useState<SymbolType>(SYMBOL_O);
+    const [currentStep, setCurrentStep] = useState<SymbolValueType>(
+        GAME_SYMBOL.ZERO
+    );
     const [winnerSequence, setWinnerSequence] = useState<
         Array<number> | undefined
     >();
@@ -22,7 +24,11 @@ function useGameState() {
         if (winner) {
             setWinnerSequence(winner);
         } else {
-            setCurrentStep(currentStep === SYMBOL_O ? SYMBOL_X : SYMBOL_O);
+            setCurrentStep(
+                currentStep === GAME_SYMBOL.ZERO
+                    ? GAME_SYMBOL.CROSS
+                    : GAME_SYMBOL.ZERO
+            );
         }
     };
 
@@ -48,7 +54,7 @@ function useGameState() {
 
     const restartGame = () => {
         setCells(Array(9).fill(null));
-        setCurrentStep(SYMBOL_O);
+        setCurrentStep(GAME_SYMBOL.ZERO);
         setWinnerSequence(undefined);
     };
 
