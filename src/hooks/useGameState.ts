@@ -4,18 +4,20 @@ import { GAME_SYMBOL, MOVE_ORDER } from "@/constants";
 import { CellType, gameStateType } from "@/types";
 import { useState } from "react";
 
-function useGameState() {
+function useGameState(playersCount: number) {
     const [{ cells, currentMove }, setGameState] = useState<gameStateType>(
         () => ({
             cells: new Array(19 * 19).fill(null),
             currentMove: GAME_SYMBOL.ZERO,
         })
     );
-    const nextMove = getNextMove();
+    const nextMove = getNextMove(playersCount);
 
-    function getNextMove() {
-        const nextMoveIndex = MOVE_ORDER.indexOf(currentMove) + 1;
-        return MOVE_ORDER[nextMoveIndex] || MOVE_ORDER[0];
+    function getNextMove(playersCount: number) {
+        const moveOrder = MOVE_ORDER.slice(0, playersCount);
+        const nextMoveIndex = moveOrder.indexOf(currentMove) + 1;
+
+        return moveOrder[nextMoveIndex] || moveOrder[0];
     }
 
     function onCellClickHandler(index: number) {

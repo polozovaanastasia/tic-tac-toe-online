@@ -12,14 +12,15 @@ export type PlayerType = {
 };
 
 type GameInfoPropsType = {
+    playersCount: number;
     players: Array<PlayerType>;
     className: string;
 };
 
-function GameInfo({ players, className }: GameInfoPropsType) {
+function GameInfo({ playersCount, players, className }: GameInfoPropsType) {
     return (
         <div className={`${styles["game-info"]} ${styles[className]}`}>
-            {players.map((player) => {
+            {players.slice(0, playersCount).map((player) => {
                 const { id, name, rating, symbol, time, avatar } = player;
                 return (
                     <PlayerInfo
@@ -32,18 +33,6 @@ function GameInfo({ players, className }: GameInfoPropsType) {
                         avatar={avatar}
                     />
                 );
-                // <div key={player.id} className={styles["game-info__section"]}>
-                //     <Profile
-                //         name={player.name}
-                //         rating={player.rating}
-                //         avatarSrc={avatarSrc}
-                //         label={GAME_SYMBOL.CROSS}
-                //     />
-                //     <span></span>
-                //     <div className={styles["game-info__time"]}>
-                //         {player.time}
-                //     </div>
-                // </div>
             })}
         </div>
     );

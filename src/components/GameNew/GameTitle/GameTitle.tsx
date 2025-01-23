@@ -5,7 +5,11 @@ import StarIcon from "@/components/Icons/StarIcon";
 import UserIcon from "@/components/Icons/UserIcon";
 import TimeIcon from "@/components/Icons/TimeIcon";
 
-function GameTitle() {
+type GameTitlePropsType = {
+    playersCount: number;
+};
+
+function GameTitle({ playersCount }: GameTitlePropsType) {
     return (
         <div className={styles["game-title"]}>
             <Link className={styles["game-title__link"]} href="#">
@@ -16,7 +20,8 @@ function GameTitle() {
             <div className={styles["game-title__info"]}>
                 <StarIcon />
                 <span className={styles["game-title__player-count"]}>
-                    <UserIcon />2
+                    <UserIcon />
+                    {playersCount}
                 </span>
                 <span className={styles["game-title__time"]}>
                     <TimeIcon />1 мин на ход

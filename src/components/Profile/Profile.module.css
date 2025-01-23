@@ -37,9 +37,16 @@
     flex-direction: column;
 }
 
+.profile__player-info-name,
+.profile__player-info-rating {
+    width: calc(180px - 58px);
+    text-wrap: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .profile__player-info-name {
     font-size: 18px;
-    text-wrap: nowrap;
     color: #0d9488;
     transition: color 0.3s;
 }
@@ -50,6 +57,5 @@ button:hover .profile__player-info-name {
 
 .profile__player-info-rating {
     font-size: 12px;
-    text-wrap: nowrap;
     color: #94a3b8;
 }

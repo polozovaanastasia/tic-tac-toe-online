@@ -5,8 +5,13 @@ import GameMoveInfo from "./GameMoveInfo/GameMoveInfo";
 import { SIZES } from "@/constants";
 import useGameState from "../../../hooks/useGameState";
 
-function GameField() {
-    const { cells, currentMove, nextMove, onCellClickHandler } = useGameState();
+type GameFieldPropsType = {
+    playersCount: number;
+};
+
+function GameField({ playersCount }: GameFieldPropsType) {
+    const { cells, currentMove, nextMove, onCellClickHandler } =
+        useGameState(playersCount);
     const actions = (
         <>
             <UIButtons variant="primary" size={SIZES.MEDIUM} onClick={() => {}}>
