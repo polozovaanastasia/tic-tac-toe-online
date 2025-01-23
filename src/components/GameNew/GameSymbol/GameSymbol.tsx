@@ -11,17 +11,15 @@ type GameSymbolPropsType = {
 };
 
 function GameSymbol({ symbol, size = SIZES.SMALL }: GameSymbolPropsType) {
-    const ICON_MAP = {
+    const Icon = {
         [GAME_SYMBOL.ZERO]: ZeroIcon,
         [GAME_SYMBOL.CROSS]: CrossIcon,
         [GAME_SYMBOL.SQUARE]: SquareIcon,
         [GAME_SYMBOL.TRIANGLE]: TriangleIcon,
-    };
-    const IconComponent = ICON_MAP[symbol];
-    const iconComponentProps =
-        size === SIZES.MEDIUM ? { width: 20, height: 20 } : {};
+    }[symbol];
+    const iconProps = size === SIZES.MEDIUM ? { width: 20, height: 20 } : {};
 
-    return <IconComponent {...iconComponentProps} />;
+    return <Icon {...iconProps} />;
 }
 
 export default GameSymbol;

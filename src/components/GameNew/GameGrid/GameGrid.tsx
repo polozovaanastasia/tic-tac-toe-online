@@ -1,26 +1,25 @@
 import styles from "./GameGrid.module.css";
 import GameCell from "./GameCell/GameCell";
-import { CellType, SymbolValueType } from "@/types";
+import { CellType } from "@/types";
 import GameSymbol from "../GameSymbol/GameSymbol";
 import { SIZES } from "@/constants";
 
 type GameGridPropsType = {
     cells: Array<CellType>;
-    currentMove: SymbolValueType;
-    onCellClick: (cell: CellType, i: number) => void;
+    onCellClick: (i: number) => void;
 };
 
-function GameGrid({ cells, currentMove, onCellClick }: GameGridPropsType) {
+function GameGrid({ cells, onCellClick }: GameGridPropsType) {
     return (
         <div className={styles["game-grid"]}>
-            {cells.map((cell, i) => {
+            {cells.map((symbol, i) => {
                 function onClick() {
-                    onCellClick(currentMove, i);
+                    onCellClick(i);
                 }
                 return (
                     <GameCell key={i} onClick={onClick}>
-                        {cell && (
-                            <GameSymbol symbol={cell} size={SIZES.MEDIUM} />
+                        {symbol && (
+                            <GameSymbol symbol={symbol} size={SIZES.MEDIUM} />
                         )}
                     </GameCell>
                 );
