@@ -3,15 +3,21 @@ import UIButtons from "../../uikit/Button/UIButton";
 import styles from "./GameField.module.css";
 import GameMoveInfo from "./GameMoveInfo/GameMoveInfo";
 import { SIZES } from "@/constants";
-import useGameState from "../../../hooks/useGameState";
+import { CellType, SymbolValueType } from "@/types";
 
 type GameFieldPropsType = {
-    playersCount: number;
+    cells: Array<CellType>;
+    currentMove: SymbolValueType;
+    nextMove: SymbolValueType;
+    onCellClickHandler: (i: number) => void;
 };
 
-function GameField({ playersCount }: GameFieldPropsType) {
-    const { cells, currentMove, nextMove, onCellClickHandler } =
-        useGameState(playersCount);
+function GameField({
+    cells,
+    currentMove,
+    nextMove,
+    onCellClickHandler,
+}: GameFieldPropsType) {
     const actions = (
         <>
             <UIButtons variant="primary" size={SIZES.MEDIUM} onClick={() => {}}>

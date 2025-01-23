@@ -7,17 +7,23 @@ export type PlayerType = {
     name: string;
     rating: number;
     symbol: SymbolValueType;
-    time: string;
+    time: number;
     avatar: string;
 };
 
 type GameInfoPropsType = {
+    currentMove: SymbolValueType;
     playersCount: number;
     players: Array<PlayerType>;
     className: string;
 };
 
-function GameInfo({ playersCount, players, className }: GameInfoPropsType) {
+function GameInfo({
+    currentMove,
+    playersCount,
+    players,
+    className,
+}: GameInfoPropsType) {
     return (
         <div className={`${styles["game-info"]} ${styles[className]}`}>
             {players.slice(0, playersCount).map((player) => {
@@ -31,6 +37,7 @@ function GameInfo({ playersCount, players, className }: GameInfoPropsType) {
                         symbol={symbol}
                         time={time}
                         avatar={avatar}
+                        isTimerRunning={currentMove === player.symbol}
                     />
                 );
             })}

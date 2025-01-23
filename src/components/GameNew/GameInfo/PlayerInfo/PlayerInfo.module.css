@@ -11,6 +11,10 @@
     font-weight: 600;
 }
 
+.time_warning {
+    color: #ea580c;
+}
+
 .player > span {
     display: inline-block;
     width: 1px;

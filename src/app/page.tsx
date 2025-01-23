@@ -5,15 +5,19 @@ import GameTitle from "@/components/GameNew/GameTitle/GameTitle";
 import GameInfo from "@/components/GameNew/GameInfo/GameInfo";
 import GameField from "@/components/GameNew/GameField/GameField";
 import { GAME_SYMBOL } from "@/constants";
+import useGameState from "@/hooks/useGameState";
 
 function Home() {
     const playersCount = 4;
+    const { cells, currentMove, nextMove, onCellClickHandler } =
+        useGameState(playersCount);
     return (
         <div className={styles["app"]}>
             <Header />
             <main className={styles["app-content"]}>
                 <GameTitle playersCount={playersCount} />
                 <GameInfo
+                    currentMove={currentMove}
                     playersCount={playersCount}
                     players={[
                         {
@@ -21,7 +25,7 @@ function Home() {
                             name: "Alex",
                             rating: 220,
                             symbol: GAME_SYMBOL.ZERO,
-                            time: "01:05",
+                            time: 60,
                             avatar: "/images/avatar2.png",
                         },
                         {
@@ -29,7 +33,7 @@ function Home() {
                             name: "Soomi",
                             rating: 112233445566778899,
                             symbol: GAME_SYMBOL.CROSS,
-                            time: "01:20",
+                            time: 60,
                             avatar: "/images/avatar.png",
                         },
                         {
@@ -37,7 +41,7 @@ function Home() {
                             name: "Polozova",
                             rating: 230,
                             symbol: GAME_SYMBOL.TRIANGLE,
-                            time: "00:08",
+                            time: 60,
                             avatar: "/images/avatar.png",
                         },
                         {
@@ -45,13 +49,18 @@ function Home() {
                             name: "Viliam Dacarad",
                             rating: 5220,
                             symbol: GAME_SYMBOL.SQUARE,
-                            time: "00:51",
+                            time: 60,
                             avatar: "/images/avatar2.png",
                         },
                     ]}
                     className="container-margins"
                 />
-                <GameField playersCount={playersCount} />
+                <GameField
+                    cells={cells}
+                    currentMove={currentMove}
+                    nextMove={nextMove}
+                    onCellClickHandler={onCellClickHandler}
+                />
             </main>
         </div>
     );
