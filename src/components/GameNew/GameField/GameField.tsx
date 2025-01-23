@@ -1,40 +1,12 @@
 import GameGrid from "../GameGrid/GameGrid";
 import UIButtons from "../../uikit/Button/UIButton";
 import styles from "./GameField.module.css";
-import { CellType, SymbolValueType } from "@/types";
 import GameMoveInfo from "./GameMoveInfo/GameMoveInfo";
-import { useState } from "react";
-import { GAME_SYMBOL, MOVE_ORDER, SIZES } from "@/constants";
-
-type gameStateType = {
-    cells: Array<CellType>;
-    currentMove: SymbolValueType;
-};
+import { SIZES } from "@/constants";
+import useGameState from "../../../hooks/useGameState";
 
 function GameField() {
-    const [gameState, setGameState] = useState<gameStateType>(() => ({
-        cells: new Array(19 * 19).fill(null),
-        currentMove: GAME_SYMBOL.ZERO,
-    }));
-    const nextMove = getNextMove();
-
-    function getNextMove() {
-        const nextMoveIndex = MOVE_ORDER.indexOf(gameState.currentMove) + 1;
-        return MOVE_ORDER[nextMoveIndex] || MOVE_ORDER[0];
-    }
-
-    function onCellClickHandler(index: number) {
-        if (gameState.cells[index]) return;
-
-        const cellsCopy: Array<CellType> = [...gameState.cells];
-        cellsCopy[index] = gameState.currentMove;
-        setGameState((lastGameState) => ({
-            ...lastGameState,
-            cells: cellsCopy,
-            currentMove: nextMove,
-        }));
-    }
-
+    const { cells, currentMove, nextMove, onCellClickHandler } = useGameState();
     const actions = (
         <>
             <UIButtons variant="primary" size={SIZES.MEDIUM} onClick={() => {}}>
@@ -49,13 +21,10 @@ function GameField() {
         <div className={styles["game-field"]}>
             <GameMoveInfo
                 actions={actions}
-                currentMove={gameState.currentMove}
+                currentMove={currentMove}
                 nextMove={nextMove}
             ></GameMoveInfo>
-            <GameGrid
-                cells={gameState.cells}
-                onCellClick={onCellClickHandler}
-            />
+            <GameGrid cells={cells} onCellClick={onCellClickHandler} />
         </div>
     );
 }

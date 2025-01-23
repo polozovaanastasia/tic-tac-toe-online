@@ -1,12 +1,14 @@
-import Profile from "@/components/Profile/Profile";
+import { SymbolValueType } from "@/types";
 import styles from "./GameInfo.module.css";
-import { GAME_SYMBOL } from "@/constants";
+import PlayerInfo from "./PlayerInfo/PlayerInfo";
 
-type PlayerType = {
+export type PlayerType = {
     id: number;
     name: string;
     rating: number;
+    symbol: SymbolValueType;
     time: string;
+    avatar: string;
 };
 
 type GameInfoPropsType = {
@@ -15,23 +17,34 @@ type GameInfoPropsType = {
 };
 
 function GameInfo({ players, className }: GameInfoPropsType) {
-    const avatarSrc = "/images/avatar.png";
     return (
         <div className={`${styles["game-info"]} ${styles[className]}`}>
-            {players.map((player) => (
-                <div key={player.id} className={styles["game-info__section"]}>
-                    <Profile
-                        name={player.name}
-                        rating={player.rating}
-                        avatarSrc={avatarSrc}
-                        label={GAME_SYMBOL.CROSS}
+            {players.map((player) => {
+                const { id, name, rating, symbol, time, avatar } = player;
+                return (
+                    <PlayerInfo
+                        key={id}
+                        id={id}
+                        name={name}
+                        rating={rating}
+                        symbol={symbol}
+                        time={time}
+                        avatar={avatar}
                     />
-                    <span></span>
-                    <div className={styles["game-info__time"]}>
-                        {player.time}
-                    </div>
-                </div>
-            ))}
+                );
+                // <div key={player.id} className={styles["game-info__section"]}>
+                //     <Profile
+                //         name={player.name}
+                //         rating={player.rating}
+                //         avatarSrc={avatarSrc}
+                //         label={GAME_SYMBOL.CROSS}
+                //     />
+                //     <span></span>
+                //     <div className={styles["game-info__time"]}>
+                //         {player.time}
+                //     </div>
+                // </div>
+            })}
         </div>
     );
 }

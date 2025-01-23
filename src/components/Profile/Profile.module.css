@@ -27,17 +27,10 @@
     align-items: center;
     width: 20px;
     height: 20px;
+    background: white;
     border-radius: 50%;
     box-shadow: 0 1px 2px -1px rgba(0, 0, 0, 0.1),
         0 1px 3px 0 rgba(0, 0, 0, 0.1);
-}
-
-.profile__label_x {
-    background: white url("/icons/symbol-x_icon.svg") center no-repeat;
-}
-
-.profile__label_o {
-    background: white url("/icons/symbol-o_icon.svg") center no-repeat;
 }
 
 .profile__player-info {

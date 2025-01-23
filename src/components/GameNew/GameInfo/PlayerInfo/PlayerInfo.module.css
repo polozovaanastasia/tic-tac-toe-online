@@ -1,0 +1,27 @@
+.player {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-basis: 50%;
+}
+
+.player__time {
+    align-items: center;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.player > span {
+    display: inline-block;
+    width: 1px;
+    height: 24px;
+    background-color: #e2e8f0;
+}
+
+.player:nth-child(2n) {
+    flex-direction: row-reverse;
+}
+
+.player > div:first-child {
+    width: 180px;
+}

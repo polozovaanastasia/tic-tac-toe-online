@@ -1,29 +1,23 @@
 import { SymbolValueType } from "@/types";
 import styles from "./Profile.module.css";
 import Image from "next/image";
-import { GAME_SYMBOL } from "@/constants";
+import GameSymbol from "../GameNew/GameSymbol/GameSymbol";
 
 type ProfilePropsType = {
     name: string;
     rating: number;
     avatarSrc: string;
-    label?: SymbolValueType;
+    symbol?: SymbolValueType;
 };
 
-function Profile({ name, rating, avatarSrc, label }: ProfilePropsType) {
-    const labelClassMap = {
-        [GAME_SYMBOL.CROSS]: styles["profile__label_x"],
-        [GAME_SYMBOL.ZERO]: styles["profile__label_o"],
-        [GAME_SYMBOL.SQUARE]: styles["profile__label_s"],
-        [GAME_SYMBOL.TRIANGLE]: styles["profile__label_t"],
-    };
+function Profile({ name, rating, avatarSrc, symbol }: ProfilePropsType) {
     return (
         <div className={styles["profile__player"]}>
             <div className={styles["profile__avatar"]}>
-                {label && (
-                    <div
-                        className={`${styles["profile__label"]} ${labelClassMap[label]}`}
-                    ></div>
+                {symbol && (
+                    <div className={`${styles["profile__label"]}`}>
+                        <GameSymbol symbol={symbol} />
+                    </div>
                 )}
                 <Image
                     unoptimized

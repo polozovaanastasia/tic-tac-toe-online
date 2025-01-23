@@ -1,3 +1,8 @@
+export type gameStateType = {
+    cells: Array<CellType>;
+    currentMove: SymbolValueType;
+};
+
 export type CellType = null | SymbolValueType;
 
 export type SizesType = {
