@@ -3,12 +3,13 @@ import UIButtons from "../../uikit/Button/UIButton";
 import styles from "./GameField.module.css";
 import GameMoveInfo from "./GameMoveInfo/GameMoveInfo";
 import { SIZES } from "@/constants";
-import { CellType, SymbolValueType } from "@/types";
+import { CellType, IsWinnerType, SymbolValueType } from "@/types";
 
 type GameFieldPropsType = {
     cells: Array<CellType>;
     currentMove: SymbolValueType;
     nextMove: SymbolValueType;
+    isWinner: IsWinnerType;
     onCellClickHandler: (i: number) => void;
 };
 
@@ -16,6 +17,7 @@ function GameField({
     cells,
     currentMove,
     nextMove,
+    isWinner,
     onCellClickHandler,
 }: GameFieldPropsType) {
     const actions = (
@@ -35,7 +37,11 @@ function GameField({
                 currentMove={currentMove}
                 nextMove={nextMove}
             ></GameMoveInfo>
-            <GameGrid cells={cells} onCellClick={onCellClickHandler} />
+            <GameGrid
+                cells={cells}
+                isWinner={isWinner}
+                onCellClick={onCellClickHandler}
+            />
         </div>
     );
 }

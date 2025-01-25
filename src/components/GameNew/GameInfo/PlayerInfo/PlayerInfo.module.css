@@ -9,6 +9,11 @@
     align-items: center;
     font-size: 18px;
     font-weight: 600;
+    color: #cbd5e1;
+}
+
+.player__time_active {
+    color: #000;
 }
 
 .time_warning {

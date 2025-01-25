@@ -5,12 +5,14 @@ import { CellType, gameStateType } from "@/types";
 import { useState } from "react";
 
 function useGameState(playersCount: number) {
-    const [{ cells, currentMove }, setGameState] = useState<gameStateType>(
-        () => ({
+    const [{ cells, currentMove, isWinner }, setGameState] =
+        useState<gameStateType>(() => ({
             cells: new Array(19 * 19).fill(null),
             currentMove: GAME_SYMBOL.ZERO,
-        })
-    );
+            isWinner: undefined,
+        }));
+
+    console.log(computeWinner(cells));
     const nextMove = getNextMove(playersCount);
 
     function getNextMove(playersCount: number) {
@@ -20,15 +22,60 @@ function useGameState(playersCount: number) {
         return moveOrder[nextMoveIndex] || moveOrder[0];
     }
 
+    function computeWinner(
+        cells: Array<CellType>,
+        sequenceSize: number = 5,
+        fieldSize: number = 19
+    ) {
+        function compareElements(indexes: Array<number>) {
+            let result = true;
+            for (let i = 1; i < indexes.length; i++) {
+                result &&= !!cells[indexes[i]];
+                result &&= cells[indexes[i]] === cells[indexes[i - 1]];
+            }
+            return result;
+        }
+
+        function getSequenceIndexes(i: number) {
+            const res: Array<Array<number>> = [
+                [], // -
+                [], // \
+                [], // /
+                [], // |
+            ];
+
+            for (let j = 0; j < sequenceSize; j++) {
+                res[0].push(i + j);
+                res[1].push(i + fieldSize * j + j);
+                res[2].push(i - fieldSize * j + j);
+                res[3].push(i + fieldSize * j);
+            }
+            return res;
+        }
+
+        for (let i = 0; i < cells.length; i++) {
+            if (cells[i]) {
+                const indexesRows = getSequenceIndexes(i);
+                const winerIndexes = indexesRows.find((row) =>
+                    compareElements(row)
+                );
+                if (winerIndexes) return winerIndexes;
+            }
+        }
+        return undefined;
+    }
+
     function onCellClickHandler(index: number) {
         if (cells[index]) return;
 
         const cellsCopy: Array<CellType> = [...cells];
         cellsCopy[index] = currentMove;
+        const winnerIndexes = computeWinner(cellsCopy);
         setGameState((lastGameState) => ({
             ...lastGameState,
             cells: cellsCopy,
             currentMove: nextMove,
+            isWinner: winnerIndexes,
         }));
     }
 
@@ -36,6 +83,7 @@ function useGameState(playersCount: number) {
         cells,
         currentMove,
         nextMove,
+        isWinner,
         onCellClickHandler,
     };
     // const [cells, setCells] = useState<Array<CellType>>(Array(9).fill(null));

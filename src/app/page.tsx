@@ -8,8 +8,8 @@ import { GAME_SYMBOL } from "@/constants";
 import useGameState from "@/hooks/useGameState";
 
 function Home() {
-    const playersCount = 4;
-    const { cells, currentMove, nextMove, onCellClickHandler } =
+    const playersCount = 2;
+    const { cells, currentMove, nextMove, isWinner, onCellClickHandler } =
         useGameState(playersCount);
     return (
         <div className={styles["app"]}>
@@ -59,6 +59,7 @@ function Home() {
                     cells={cells}
                     currentMove={currentMove}
                     nextMove={nextMove}
+                    isWinner={isWinner}
                     onCellClickHandler={onCellClickHandler}
                 />
             </main>

@@ -22,6 +22,7 @@ function PlayerInfo({
 
     const playerTimeClasses = classNames(
         styles["player__time"],
+        isTimerRunning && styles["player__time_active"],
         seconds <= 10 ? styles[`time_warning`] : ""
     );
 
@@ -29,8 +30,9 @@ function PlayerInfo({
         if (isTimerRunning) {
             const intervalId = setInterval(() => {
                 setSeconds((s) => {
-                    if (s <= 0) {
+                    if (!s) {
                         clearInterval(intervalId);
+                        // console.log("isTimeUp");
                         return 0;
                     }
                     return s - 1;
