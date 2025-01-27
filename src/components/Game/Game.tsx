@@ -17,7 +17,7 @@ function Game() {
             <div className={styles.game__container}>
                 <GameInfo
                     currentStep={currentStep}
-                    isWinner={Boolean(winnerSequence)}
+                    winnerSequence={Boolean(winnerSequence)}
                     isDraw={isDraw}
                     restartGame={restartGame}
                 />
@@ -37,7 +37,9 @@ function Game() {
                             <GameCell
                                 key={index}
                                 cell={cell}
-                                isWinner={!!winnerSequence?.includes(index)}
+                                winnerSequence={
+                                    !!winnerSequence?.includes(index)
+                                }
                                 onClickHandler={onClickHandler}
                             />
                         );

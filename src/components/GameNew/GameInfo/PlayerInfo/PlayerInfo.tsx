@@ -4,7 +4,10 @@ import { PlayerType } from "../GameInfo";
 import { useEffect, useState } from "react";
 import classNames from "classnames";
 
-type PlayerInfoPropsType = PlayerType & { isTimerRunning: boolean };
+type PlayerInfoPropsType = PlayerType & {
+    isTimerRunning: boolean;
+    onTimeOver: () => void;
+};
 
 function PlayerInfo({
     id,
@@ -14,6 +17,7 @@ function PlayerInfo({
     time,
     avatar,
     isTimerRunning,
+    onTimeOver,
 }: PlayerInfoPropsType) {
     const [seconds, setSeconds] = useState<number>(time);
 
@@ -45,6 +49,13 @@ function PlayerInfo({
             };
         }
     }, [isTimerRunning, time]);
+
+    useEffect(() => {
+        if (!seconds) {
+            onTimeOver();
+        }
+        //eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [seconds]);
 
     return (
         <div key={id} className={styles["player"]}>

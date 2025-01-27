@@ -1,10 +1,11 @@
 export type gameStateType = {
     cells: Array<CellType>;
     currentMove: SymbolValueType;
-    isWinner: Array<number> | undefined;
+    winnerSequence: Array<number> | false;
+    playersTimeOver: Array<SymbolValueType>;
 };
 
-export type IsWinnerType = gameStateType["isWinner"];
+export type winnerSequenceType = gameStateType["winnerSequence"];
 
 export type CellType = null | SymbolValueType;
 

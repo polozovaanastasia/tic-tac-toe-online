@@ -5,13 +5,13 @@ import { SYMBOL_O, SYMBOL_X } from "@/constants";
 
 type GameCellPropsType = {
     cell: CellType;
-    isWinner: boolean;
+    winnerSequence: boolean;
     onClickHandler: () => void;
 };
 
-function GameCell({ cell, isWinner, onClickHandler }: GameCellPropsType) {
+function GameCell({ cell, winnerSequence, onClickHandler }: GameCellPropsType) {
     const GameCellClassName = `${styles["game-cell"]} ${
-        isWinner ? styles["game-cell_winner"] : ""
+        winnerSequence ? styles["game-cell_winner"] : ""
     } ${
         cell === SYMBOL_X
             ? styles["game-cell_X"]

@@ -1,22 +1,30 @@
 "use client";
 
 import { GAME_SYMBOL, MOVE_ORDER } from "@/constants";
-import { CellType, gameStateType } from "@/types";
+import { CellType, gameStateType, SymbolValueType } from "@/types";
 import { useState } from "react";
 
 function useGameState(playersCount: number) {
-    const [{ cells, currentMove, isWinner }, setGameState] =
-        useState<gameStateType>(() => ({
-            cells: new Array(19 * 19).fill(null),
-            currentMove: GAME_SYMBOL.ZERO,
-            isWinner: undefined,
-        }));
+    const [
+        { cells, currentMove, winnerSequence, playersTimeOver },
+        setGameState,
+    ] = useState<gameStateType>(() => ({
+        cells: new Array(19 * 19).fill(null),
+        currentMove: GAME_SYMBOL.ZERO,
+        winnerSequence: false,
+        playersTimeOver: [],
+    }));
 
-    console.log(computeWinner(cells));
-    const nextMove = getNextMove(playersCount);
+    const nextMove = getNextMove(currentMove, playersCount, playersTimeOver);
 
-    function getNextMove(playersCount: number) {
-        const moveOrder = MOVE_ORDER.slice(0, playersCount);
+    function getNextMove(
+        currentMove: SymbolValueType,
+        playersCount: number,
+        playersTimeOver: Array<SymbolValueType>
+    ) {
+        const moveOrder = MOVE_ORDER.slice(0, playersCount).filter(
+            (symbol) => !playersTimeOver.includes(symbol)
+        );
         const nextMoveIndex = moveOrder.indexOf(currentMove) + 1;
 
         return moveOrder[nextMoveIndex] || moveOrder[0];
@@ -28,12 +36,8 @@ function useGameState(playersCount: number) {
         fieldSize: number = 19
     ) {
         function compareElements(indexes: Array<number>) {
-            let result = true;
-            for (let i = 1; i < indexes.length; i++) {
-                result &&= !!cells[indexes[i]];
-                result &&= cells[indexes[i]] === cells[indexes[i - 1]];
-            }
-            return result;
+            const symbol = cells[indexes[0]];
+            return indexes.every((index) => cells[index] === symbol);
         }
 
         function getSequenceIndexes(i: number) {
@@ -62,20 +66,35 @@ function useGameState(playersCount: number) {
                 if (winerIndexes) return winerIndexes;
             }
         }
-        return undefined;
+        return false;
     }
 
     function onCellClickHandler(index: number) {
-        if (cells[index]) return;
-
+        if (cells[index] || winnerSequence) return;
         const cellsCopy: Array<CellType> = [...cells];
         cellsCopy[index] = currentMove;
         const winnerIndexes = computeWinner(cellsCopy);
         setGameState((lastGameState) => ({
             ...lastGameState,
             cells: cellsCopy,
-            currentMove: nextMove,
-            isWinner: winnerIndexes,
+            currentMove: getNextMove(
+                lastGameState.currentMove,
+                playersCount,
+                playersTimeOver
+            ),
+            winnerSequence: winnerIndexes,
+        }));
+    }
+
+    function onPlayersTimeOverHandler(symbol: SymbolValueType) {
+        setGameState((lastGameState) => ({
+            ...lastGameState,
+            playersTimeOver: [...lastGameState.playersTimeOver, symbol],
+            currentMove: getNextMove(
+                lastGameState.currentMove,
+                playersCount,
+                playersTimeOver
+            ),
         }));
     }
 
@@ -83,63 +102,10 @@ function useGameState(playersCount: number) {
         cells,
         currentMove,
         nextMove,
-        isWinner,
+        winnerSequence,
         onCellClickHandler,
+        onPlayersTimeOverHandler,
     };
-    // const [cells, setCells] = useState<Array<CellType>>(Array(9).fill(null));
-    // const [currentStep, setCurrentStep] = useState<SymbolValueType>(
-    //     GAME_SYMBOL.ZERO
-    // );
-    // const [winnerSequence, setWinnerSequence] = useState<
-    //     Array<number> | undefined
-    // >();
-    // const onCellClickHandler = (cell: CellType, index: number) => {
-    //     if (cell || winnerSequence) return;
-    //     const cellsCopy = [...cells];
-    //     cellsCopy[index] = currentStep;
-    //     setCells(cellsCopy);
-    //     const winner = computeWinner(cellsCopy);
-    //     if (winner) {
-    //         setWinnerSequence(winner);
-    //     } else {
-    //         setCurrentStep(
-    //             currentStep === GAME_SYMBOL.ZERO
-    //                 ? GAME_SYMBOL.CROSS
-    //                 : GAME_SYMBOL.ZERO
-    //         );
-    //     }
-    // };
-    // const computeWinner = (cells: Array<CellType>) => {
-    //     const lines = [
-    //         [0, 1, 2],
-    //         [3, 4, 5],
-    //         [6, 7, 8],
-    //         [0, 4, 8],
-    //         [2, 4, 6],
-    //         [0, 3, 6],
-    //         [1, 4, 7],
-    //         [2, 5, 8],
-    //     ];
-    //     for (let i = 0; i < lines.length; i++) {
-    //         const [a, b, c] = lines[i];
-    //         if (cells[a] && cells[a] === cells[b] && cells[a] === cells[c])
-    //             return [a, b, c];
-    //     }
-    // };
-    // const isDraw = cells.every((cell) => cell);
-    // const restartGame = () => {
-    //     setCells(Array(9).fill(null));
-    //     setCurrentStep(GAME_SYMBOL.ZERO);
-    //     setWinnerSequence(undefined);
-    // };
-    // return {
-    //     cells,
-    //     currentStep,
-    //     winnerSequence,
-    //     isDraw,
-    //     onCellClickHandler,
-    //     restartGame,
-    // };
 }
 
 export default useGameState;

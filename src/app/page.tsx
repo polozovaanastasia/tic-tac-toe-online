@@ -8,9 +8,15 @@ import { GAME_SYMBOL } from "@/constants";
 import useGameState from "@/hooks/useGameState";
 
 function Home() {
-    const playersCount = 2;
-    const { cells, currentMove, nextMove, isWinner, onCellClickHandler } =
-        useGameState(playersCount);
+    const playersCount = 4;
+    const {
+        cells,
+        currentMove,
+        nextMove,
+        winnerSequence,
+        onCellClickHandler,
+        onPlayersTimeOverHandler,
+    } = useGameState(playersCount);
     return (
         <div className={styles["app"]}>
             <Header />
@@ -25,7 +31,7 @@ function Home() {
                             name: "Alex",
                             rating: 220,
                             symbol: GAME_SYMBOL.ZERO,
-                            time: 60,
+                            time: 30,
                             avatar: "/images/avatar2.png",
                         },
                         {
@@ -33,7 +39,7 @@ function Home() {
                             name: "Soomi",
                             rating: 112233445566778899,
                             symbol: GAME_SYMBOL.CROSS,
-                            time: 60,
+                            time: 30,
                             avatar: "/images/avatar.png",
                         },
                         {
@@ -41,7 +47,7 @@ function Home() {
                             name: "Polozova",
                             rating: 230,
                             symbol: GAME_SYMBOL.TRIANGLE,
-                            time: 60,
+                            time: 30,
                             avatar: "/images/avatar.png",
                         },
                         {
@@ -49,17 +55,19 @@ function Home() {
                             name: "Viliam Dacarad",
                             rating: 5220,
                             symbol: GAME_SYMBOL.SQUARE,
-                            time: 60,
+                            time: 30,
                             avatar: "/images/avatar2.png",
                         },
                     ]}
+                    isWinner={!!winnerSequence}
+                    onPlayersTimeOverHandler={onPlayersTimeOverHandler}
                     className="container-margins"
                 />
                 <GameField
                     cells={cells}
                     currentMove={currentMove}
                     nextMove={nextMove}
-                    isWinner={isWinner}
+                    winnerSequence={winnerSequence}
                     onCellClickHandler={onCellClickHandler}
                 />
             </main>

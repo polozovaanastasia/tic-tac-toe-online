@@ -6,19 +6,19 @@ import RestartButton from "../RestartGame/RestartGame";
 
 type GameInfoPropsType = {
     currentStep: SymbolType;
-    isWinner: boolean;
+    winnerSequence: boolean;
     isDraw: boolean;
     restartGame: () => void;
 };
 
 function GameInfo({
     currentStep,
-    isWinner,
+    winnerSequence,
     isDraw,
     restartGame,
 }: GameInfoPropsType) {
     const GameResultClassName = `${styles["game-result"]} ${
-        isWinner
+        winnerSequence
             ? currentStep === SYMBOL_X
                 ? styles["game-result-winner_X"]
                 : currentStep === SYMBOL_O
@@ -27,11 +27,11 @@ function GameInfo({
             : ""
     }`;
 
-    if (isWinner || isDraw) {
+    if (winnerSequence || isDraw) {
         return (
             <div className={styles["game-info"]}>
                 <div className={GameResultClassName}>
-                    {isWinner ? (
+                    {winnerSequence ? (
                         <span>
                             <span className={styles["game-info-title"]}>
                                 Победитель:
