@@ -1,5 +1,5 @@
 import GameGrid from "../GameGrid/GameGrid";
-import UIButtons from "../../uikit/Button/UIButton";
+import UIButtons from "../../uikit/UIButton/UIButton";
 import styles from "./GameField.module.css";
 import GameMoveInfo from "./GameMoveInfo/GameMoveInfo";
 import { SIZES } from "@/constants";

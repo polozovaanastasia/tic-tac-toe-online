@@ -1,14 +1,16 @@
 "use client";
 import Header from "@/components/Header/Header";
 import styles from "./page.module.css";
-import GameTitle from "@/components/GameNew/GameTitle/GameTitle";
-import GameInfo from "@/components/GameNew/GameInfo/GameInfo";
-import GameField from "@/components/GameNew/GameField/GameField";
-import { GAME_SYMBOL } from "@/constants";
+import GameTitle from "@/components/Game/GameTitle/GameTitle";
+import GameInfo from "@/components/Game/GameInfo/GameInfo";
+import GameField from "@/components/Game/GameField/GameField";
+import { GAME_SYMBOL, SIZES } from "@/constants";
 import useGameState from "@/hooks/useGameState";
+import UIModal from "@/components/uikit/UIModal/UIModal";
+import UIButton from "@/components/uikit/UIButton/UIButton";
 
 function Home() {
-    const playersCount = 4;
+    const playersCount = 2;
     const {
         cells,
         currentMove,
@@ -31,7 +33,7 @@ function Home() {
                             name: "Alex",
                             rating: 220,
                             symbol: GAME_SYMBOL.ZERO,
-                            time: 30,
+                            time: 30000,
                             avatar: "/images/avatar2.png",
                         },
                         {
@@ -63,6 +65,36 @@ function Home() {
                     onPlayersTimeOverHandler={onPlayersTimeOverHandler}
                     className="container-margins"
                 />
+                <UIModal
+                    // isOpen={!!winnerSequence}
+                    isOpen={true}
+                    onClose={() => console.log("Закрываю окно")}
+                >
+                    {
+                        <>
+                            <UIModal.Header>{"Игра завершена!"}</UIModal.Header>
+                            <UIModal.Body>
+                                {<div>{"Modal Body"}</div>}
+                            </UIModal.Body>
+                            <UIModal.Footer>
+                                <UIButton
+                                    variant="outline"
+                                    size={SIZES.MEDIUM}
+                                    onClick={() => {}}
+                                >
+                                    {"Вернуться"}
+                                </UIButton>
+                                <UIButton
+                                    variant="primary"
+                                    size={SIZES.MEDIUM}
+                                    onClick={() => {}}
+                                >
+                                    {"Играть снова"}
+                                </UIButton>
+                            </UIModal.Footer>
+                        </>
+                    }
+                </UIModal>
                 <GameField
                     cells={cells}
                     currentMove={currentMove}
@@ -71,6 +103,7 @@ function Home() {
                     onCellClickHandler={onCellClickHandler}
                 />
             </main>
+            <div id="modals"></div>
         </div>
     );
 }

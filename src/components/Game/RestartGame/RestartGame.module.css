@@ -1,9 +1,0 @@
-.game-restart {
-    padding: 10px;
-    border: 1px solid;
-    font-family: inherit;
-    background-color: var(--primary-background);
-    color: #fff;
-    cursor: pointer;
-    border: none;
-}

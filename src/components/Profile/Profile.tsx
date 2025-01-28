@@ -1,7 +1,7 @@
 import { SymbolValueType } from "@/types";
 import styles from "./Profile.module.css";
 import Image from "next/image";
-import GameSymbol from "../GameNew/GameSymbol/GameSymbol";
+import GameSymbol from "../Game/GameSymbol/GameSymbol";
 
 type ProfilePropsType = {
     name: string;

@@ -1,58 +1,57 @@
+import { SymbolValueType } from "@/types";
 import styles from "./GameInfo.module.css";
-import { SymbolType } from "../../../types/index";
-import GameSymbol from "../GameSymbol/GameSymbol";
-import { SYMBOL_O, SYMBOL_X } from "@/constants";
-import RestartButton from "../RestartGame/RestartGame";
+import PlayerInfo from "./PlayerInfo/PlayerInfo";
+
+export type PlayerType = {
+    id: number;
+    name: string;
+    rating: number;
+    symbol: SymbolValueType;
+    time: number;
+    avatar: string;
+};
 
 type GameInfoPropsType = {
-    currentStep: SymbolType;
-    winnerSequence: boolean;
-    isDraw: boolean;
-    restartGame: () => void;
+    currentMove: SymbolValueType;
+    playersCount: number;
+    players: Array<PlayerType>;
+    isWinner: boolean;
+    onPlayersTimeOverHandler: (symbol: SymbolValueType) => void;
+    className: string;
 };
 
 function GameInfo({
-    currentStep,
-    winnerSequence,
-    isDraw,
-    restartGame,
+    currentMove,
+    playersCount,
+    players,
+    isWinner,
+    onPlayersTimeOverHandler,
+    className,
 }: GameInfoPropsType) {
-    const GameResultClassName = `${styles["game-result"]} ${
-        winnerSequence
-            ? currentStep === SYMBOL_X
-                ? styles["game-result-winner_X"]
-                : currentStep === SYMBOL_O
-                ? styles["game-result-winner_O"]
-                : ""
-            : ""
-    }`;
-
-    if (winnerSequence || isDraw) {
-        return (
-            <div className={styles["game-info"]}>
-                <div className={GameResultClassName}>
-                    {winnerSequence ? (
-                        <span>
-                            <span className={styles["game-info-title"]}>
-                                Победитель:
-                            </span>
-                            <GameSymbol symbol={currentStep} />
-                        </span>
-                    ) : (
-                        <span>О, это ничья. Сыграем еще раз?</span>
-                    )}
-
-                    <RestartButton onClick={restartGame} />
-                </div>
-            </div>
-        );
-    }
     return (
-        <div className={styles["game-info"]}>
-            <div className={styles["game-step"]}>
-                <span className={styles["game-info-title"]}> Ходит: </span>
-                <GameSymbol symbol={currentStep} />
-            </div>
+        <div className={`${styles["game-info"]} ${styles[className]}`}>
+            {players.slice(0, playersCount).map((player) => {
+                const { id, name, rating, symbol, time, avatar } = player;
+
+                function onTimeOver() {
+                    onPlayersTimeOverHandler(symbol);
+                }
+                return (
+                    <PlayerInfo
+                        key={id}
+                        id={id}
+                        name={name}
+                        rating={rating}
+                        symbol={symbol}
+                        time={time}
+                        avatar={avatar}
+                        isTimerRunning={
+                            !isWinner && currentMove === player.symbol
+                        }
+                        onTimeOver={onTimeOver}
+                    />
+                );
+            })}
         </div>
     );
 }

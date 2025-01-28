@@ -1,54 +1,14 @@
 .game-info {
-    text-align: center;
-}
-
-.game-step,
-.game-result {
-    padding: 10px;
-}
-
-.game-step {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-wrap: wrap;
+    padding: 16px 32px;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 2px 4px -2px rgb(255, 255, 255, 0.1),
+        0 4px 6px -1px rgb(255, 255, 255, 0.1);
 }
 
-.game-info-title {
-    margin-right: 5px;
-}
-
-.game-result {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 60px;
-    box-sizing: border-box;
-    background-color: var(--primary-color);
-    color: #fff;
-}
-
-.game-result-winner_O {
-    background-color: var(--background_O);
-}
-
-.game-result-winner_X {
-    background-color: var(--background_X);
-}
-
-.game-result span {
-    display: flex;
-    align-items: center;
-}
-
-.game-result .symbol,
-.game-step .symbol {
-    margin-left: 5px;
-}
-
-.game-result-winner_O span + button {
-    background-color: var(--color_O);
-}
-
-.game-result-winner_X span + button {
-    background-color: var(--color_X);
+.container-margins {
+    margin-top: 17px;
+    margin-bottom: 24px;
 }

@@ -6,6 +6,12 @@ export const SIZES: SizesType = {
     SMALL: "sm",
 };
 
+export const UIBUTTON_VARIANT: SizesType = {
+    LARGE: "lg",
+    MEDIUM: "md",
+    SMALL: "sm",
+};
+
 export const GAME_SYMBOL: SymbolType = {
     ZERO: "zero",
     CROSS: "cross",
