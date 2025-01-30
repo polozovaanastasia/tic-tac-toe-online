@@ -13,3 +13,25 @@
     box-shadow: 0 2px 4px -2px rgb(255, 255, 255, 0.1),
         0 4px 6px -1px rgb(255, 255, 255, 0.1);
 }
+
+.game-field {
+    width: 100%;
+    padding: 20px 32px 28px;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 2px 4px -2px rgb(255, 255, 255, 0.1),
+        0 4px 6px -1px rgb(255, 255, 255, 0.1);
+}
+
+.game-field__header {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 11px;
+    margin-bottom: 12px;
+}
+
+.game-grid {
+    display: flex;
+    flex-wrap: wrap;
+}

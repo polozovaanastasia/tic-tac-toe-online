@@ -1,9 +1,12 @@
-import { PLAYERS } from "@/constants";
+import { PLAYERS, SIZES } from "@/constants";
 import { BackLink } from "./UI/BackLink/BackLink";
 import { GameLayout } from "./UI/GameLayout/GameLayout";
 import { GameSubtitle } from "./UI/GameSubtitle/GameSubtitle";
 import { GameTitle } from "./UI/GameTitle/GameTitle";
 import { PlayerInfo } from "./UI/PlayerInfo/PlayerInfo";
+import { GameMoveInfo } from "./UI/GameMoveInfo/GameMoveInfo";
+import UIButton from "../uikit/UIButton/UIButton";
+import { GameCell } from "./UI/GameCell/GameCell";
 
 export function Game() {
     return (
@@ -25,7 +28,35 @@ export function Game() {
                     symbol={player.symbol}
                     seconds={player.time}
                     avatar={player.avatar}
+                    isTimerRunning={false}
                 />
+            ))}
+            steps={<GameMoveInfo currentMove="cross" nextMove="zero" />}
+            actions={
+                <>
+                    <UIButton
+                        variant="primary"
+                        size={SIZES.MEDIUM}
+                        onClick={() => {}}
+                    >
+                        Ничья
+                    </UIButton>
+                    <UIButton
+                        variant="outline"
+                        size={SIZES.MEDIUM}
+                        onClick={() => {}}
+                    >
+                        Сдаться
+                    </UIButton>
+                </>
+            }
+            gameCells={new Array(19 * 19).fill(null).map((symbol, i) => (
+                <GameCell
+                    key={i}
+                    symbol={symbol}
+                    isWinner={false}
+                    onClick={() => {}}
+                ></GameCell>
             ))}
         />
     );

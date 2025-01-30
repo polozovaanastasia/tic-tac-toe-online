@@ -5,6 +5,9 @@ type GameLayoutPropsType = {
     title: React.ReactElement;
     subtitle: React.ReactElement;
     playerList: React.ReactNode;
+    steps: React.ReactNode;
+    actions: React.ReactNode;
+    gameCells: React.ReactNode;
 };
 
 export function GameLayout({
@@ -12,6 +15,9 @@ export function GameLayout({
     title,
     subtitle,
     playerList,
+    steps,
+    actions,
+    gameCells,
 }: GameLayoutPropsType) {
     return (
         <>
@@ -21,6 +27,13 @@ export function GameLayout({
                 {subtitle}
             </div>
             <div className={styles["game-info"]}>{playerList}</div>
+            <div className={styles["game-field"]}>
+                <div className={styles["game-field__header"]}>
+                    {steps}
+                    {actions}
+                </div>
+                <div className={styles["game-grid"]}>{gameCells}</div>
+            </div>
         </>
     );
 }
