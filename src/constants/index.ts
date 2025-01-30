@@ -25,3 +25,38 @@ export const MOVE_ORDER = [
     GAME_SYMBOL.SQUARE,
     GAME_SYMBOL.TRIANGLE,
 ];
+
+export const PLAYERS = [
+    {
+        id: 2,
+        name: "Alex",
+        rating: 220,
+        symbol: GAME_SYMBOL.ZERO,
+        time: 30000,
+        avatar: "/images/avatar2.png",
+    },
+    {
+        id: 3,
+        name: "Soomi",
+        rating: 112233445566778899,
+        symbol: GAME_SYMBOL.CROSS,
+        time: 30,
+        avatar: "/images/avatar.png",
+    },
+    {
+        id: 1,
+        name: "Polozova",
+        rating: 230,
+        symbol: GAME_SYMBOL.TRIANGLE,
+        time: 30,
+        avatar: "/images/avatar.png",
+    },
+    {
+        id: 4,
+        name: "Viliam Dacarad",
+        rating: 5220,
+        symbol: GAME_SYMBOL.SQUARE,
+        time: 30,
+        avatar: "/images/avatar2.png",
+    },
+];
