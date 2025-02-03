@@ -1,9 +1,9 @@
-import { SizesValueType } from "@/types";
-import styles from "./UIModal.module.css";
-import classNames from "classnames";
-import { SIZES } from "@/constants";
 import CloseIcon from "@/components/Icons/CloseIcon";
+import { SIZES } from "@/constants";
+import { SizesValueType } from "@/types";
+import classNames from "classnames";
 import { createPortal } from "react-dom";
+import styles from "./UIModal.module.css";
 
 type ModalSizesValueType = SizesValueType | "full";
 
@@ -11,12 +11,12 @@ type UIModalPropsType = {
     size?: ModalSizesValueType;
     isOpen: boolean;
     onClose: () => void;
-    children: string | React.ReactElement | Array<React.ReactElement>;
+    children: string | React.ReactElement;
     className?: string;
 };
 
 type UIModalContentPropsType = {
-    children: string | React.ReactElement | Array<React.ReactElement>;
+    children: string | React.ReactNode;
     className?: string;
 };
 

@@ -1,14 +1,13 @@
 "use client";
-
 import { GAME_SYMBOL, MOVE_ORDER } from "@/constants";
-import { CellType, gameStateType, SymbolValueType } from "@/types";
+import { CellType, GameStateType, SymbolValueType } from "@/types";
 import { useState } from "react";
 
-function useGameState(playersCount: number) {
+export function useGameState(playersCount: number) {
     const [
         { cells, currentMove, winnerSequence, playersTimeOver },
         setGameState,
-    ] = useState<gameStateType>(() => ({
+    ] = useState<GameStateType>(() => ({
         cells: new Array(19 * 19).fill(null),
         currentMove: GAME_SYMBOL.ZERO,
         winnerSequence: false,
@@ -107,5 +106,3 @@ function useGameState(playersCount: number) {
         onPlayersTimeOverHandler,
     };
 }
-
-export default useGameState;

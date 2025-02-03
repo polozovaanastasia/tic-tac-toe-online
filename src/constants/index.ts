@@ -26,13 +26,18 @@ export const MOVE_ORDER = [
     GAME_SYMBOL.TRIANGLE,
 ];
 
+export const CLICK_CELL = "CLICK-CELL";
+export const PLAYERS_TIME_OVER = "PLAYERS-TIME-OVER";
+
+export const PLAYERS_COUNT = 2;
+
 export const PLAYERS = [
     {
         id: 2,
         name: "Alex",
         rating: 220,
         symbol: GAME_SYMBOL.ZERO,
-        time: 30000,
+        time: 30,
         avatar: "/images/avatar2.png",
     },
     {

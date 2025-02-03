@@ -1,7 +1,7 @@
 "use client";
+import { Game } from "@/components/GameNew/Game";
 import Header from "@/components/Header/Header";
 import styles from "./page.module.css";
-import { Game } from "@/components/GameNew/Game";
 
 function Home() {
     return (

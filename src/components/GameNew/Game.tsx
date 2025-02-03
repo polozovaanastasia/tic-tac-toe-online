@@ -1,63 +1,109 @@
-import { PLAYERS, SIZES } from "@/constants";
+import { PLAYERS, PLAYERS_COUNT, SIZES } from "@/constants";
+import UIButton from "../uikit/UIButton/UIButton";
+import { useGameState } from "./Model/useGameState";
 import { BackLink } from "./UI/BackLink/BackLink";
+import { GameCell } from "./UI/GameCell/GameCell";
 import { GameLayout } from "./UI/GameLayout/GameLayout";
+import { GameMoveInfo } from "./UI/GameMoveInfo/GameMoveInfo";
+import { GameOverModal } from "./UI/GameOverModal/GameOverModal";
 import { GameSubtitle } from "./UI/GameSubtitle/GameSubtitle";
 import { GameTitle } from "./UI/GameTitle/GameTitle";
 import { PlayerInfo } from "./UI/PlayerInfo/PlayerInfo";
-import { GameMoveInfo } from "./UI/GameMoveInfo/GameMoveInfo";
-import UIButton from "../uikit/UIButton/UIButton";
-import { GameCell } from "./UI/GameCell/GameCell";
 
 export function Game() {
+    const {
+        cells,
+        currentMove,
+        nextMove,
+        winnerSequence,
+        winnerSymbol,
+        onCellClickHandler,
+        onPlayersTimeOverHandler,
+    } = useGameState(PLAYERS_COUNT);
+
+    const players = PLAYERS.slice(0, PLAYERS_COUNT);
+
+    const winnerPlayer = PLAYERS.find(
+        (player) => player.symbol === winnerSymbol
+    );
     return (
-        <GameLayout
-            backLink={<BackLink />}
-            title={<GameTitle />}
-            subtitle={
-                <GameSubtitle
-                    playersCount={4}
-                    isRatingGame
-                    timeMode={"1 минута на ход"}
-                />
-            }
-            playerList={PLAYERS.map((player) => (
-                <PlayerInfo
-                    key={player.id}
-                    name={player.name}
-                    rating={player.rating}
-                    symbol={player.symbol}
-                    seconds={player.time}
-                    avatar={player.avatar}
-                    isTimerRunning={false}
-                />
-            ))}
-            steps={<GameMoveInfo currentMove="cross" nextMove="zero" />}
-            actions={
-                <>
-                    <UIButton
-                        variant="primary"
-                        size={SIZES.MEDIUM}
-                        onClick={() => {}}
-                    >
-                        Ничья
-                    </UIButton>
-                    <UIButton
-                        variant="outline"
-                        size={SIZES.MEDIUM}
-                        onClick={() => {}}
-                    >
-                        Сдаться
-                    </UIButton>
-                </>
-            }
-            gameCells={new Array(19 * 19).fill(null).map((symbol, i) => (
-                <GameCell
-                    key={i}
-                    symbol={symbol}
-                    isWinner={false}
-                    onClick={() => {}}
-                ></GameCell>
-            ))}
-        />
+        <>
+            <GameLayout
+                backLink={<BackLink />}
+                title={<GameTitle />}
+                subtitle={
+                    <GameSubtitle
+                        playersCount={PLAYERS_COUNT}
+                        isRatingGame
+                        timeMode={"1 минута на ход"}
+                    />
+                }
+                playerList={players.map((player) => (
+                    <PlayerInfo
+                        key={player.id}
+                        name={player.name}
+                        rating={player.rating}
+                        symbol={player.symbol}
+                        seconds={player.time}
+                        avatar={player.avatar}
+                        isTimerRunning={false}
+                    />
+                ))}
+                steps={
+                    <GameMoveInfo
+                        currentMove={currentMove}
+                        nextMove={nextMove}
+                    />
+                }
+                actions={
+                    <>
+                        <UIButton
+                            variant="primary"
+                            size={SIZES.MEDIUM}
+                            onClick={() => {}}
+                        >
+                            Ничья
+                        </UIButton>
+                        <UIButton
+                            variant="outline"
+                            size={SIZES.MEDIUM}
+                            onClick={() => {}}
+                        >
+                            Сдаться
+                        </UIButton>
+                    </>
+                }
+                gameCells={cells.map((cell, i) => {
+                    const isWinner =
+                        winnerSequence && winnerSequence.includes(i);
+                    function onClick() {
+                        onCellClickHandler(i);
+                    }
+                    return (
+                        <GameCell
+                            key={i}
+                            symbol={cell}
+                            isWinner={isWinner}
+                            onClick={onClick}
+                        ></GameCell>
+                    );
+                })}
+            />
+            <GameOverModal
+                winnerName={winnerPlayer?.name}
+                players={players.map((player) => (
+                    <PlayerInfo
+                        key={player.id}
+                        name={player.name}
+                        rating={player.rating}
+                        symbol={player.symbol}
+                        seconds={player.time}
+                        avatar={player.avatar}
+                        isTimerRunning={false}
+                    />
+                ))}
+                onClose={() => {}}
+            />
+        </>
     );
 }
