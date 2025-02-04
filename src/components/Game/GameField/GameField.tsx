@@ -1,15 +1,15 @@
-import GameGrid from "../GameGrid/GameGrid";
+import { SIZES } from "@/constants";
+import { CellType, SymbolValueType, WinnerSequenceType } from "@/types";
 import UIButtons from "../../uikit/UIButton/UIButton";
+import GameGrid from "../GameGrid/GameGrid";
 import styles from "./GameField.module.css";
 import GameMoveInfo from "./GameMoveInfo/GameMoveInfo";
-import { SIZES } from "@/constants";
-import { CellType, winnerSequenceType, SymbolValueType } from "@/types";
 
 type GameFieldPropsType = {
     cells: Array<CellType>;
     currentMove: SymbolValueType;
     nextMove: SymbolValueType;
-    winnerSequence: winnerSequenceType;
+    winnerSequence: WinnerSequenceType;
     onCellClickHandler: (i: number) => void;
 };
 

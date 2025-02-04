@@ -1,4 +1,4 @@
-import { CLICK_CELL, PLAYERS_TIME_OVER } from "@/constants";
+import { GAME_STATE_ACTIONS } from "@/constants";
 
 export type GameStateType = {
     cells: Array<CellType>;
@@ -7,7 +7,7 @@ export type GameStateType = {
     playersTimeOver: Array<SymbolValueType>;
 };
 
-export type winnerSequenceType = GameStateType["winnerSequence"];
+export type WinnerSequenceType = GameStateType["winnerSequence"];
 
 export type CellType = null | SymbolValueType;
 
@@ -29,5 +29,8 @@ export type SymbolType = {
 export type SymbolValueType = SymbolType[keyof SymbolType];
 
 export type GameActionType =
-    | { type: typeof CLICK_CELL; index: number }
-    | { type: typeof PLAYERS_TIME_OVER; symbol: SymbolValueType };
+    | { type: typeof GAME_STATE_ACTIONS.CLICK_CELL; index: number }
+    | {
+          type: typeof GAME_STATE_ACTIONS.PLAYERS_TIME_OVER;
+          symbol: SymbolValueType;
+      };

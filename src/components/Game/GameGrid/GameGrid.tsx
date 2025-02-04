@@ -1,12 +1,12 @@
-import styles from "./GameGrid.module.css";
-import GameCell from "./GameCell/GameCell";
-import { CellType, winnerSequenceType } from "@/types";
-import GameSymbol from "../GameSymbol/GameSymbol";
 import { SIZES } from "@/constants";
+import { CellType, WinnerSequenceType } from "@/types";
+import GameSymbol from "../GameSymbol/GameSymbol";
+import GameCell from "./GameCell/GameCell";
+import styles from "./GameGrid.module.css";
 
 type GameGridPropsType = {
     cells: Array<CellType>;
-    winnerSequence: winnerSequenceType;
+    winnerSequence: WinnerSequenceType;
     onCellClick: (i: number) => void;
 };
 

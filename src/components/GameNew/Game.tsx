@@ -1,6 +1,13 @@
 import { PLAYERS, PLAYERS_COUNT, SIZES } from "@/constants";
+import { useReducer } from "react";
 import UIButton from "../uikit/UIButton/UIButton";
-import { useGameState } from "./Model/useGameState";
+import { computeWinnerSymbol } from "./Model/computeWinnerSymbol";
+import {
+    clickCellActionCreator,
+    gameStateReducer,
+    initialGameState,
+} from "./Model/gameStateReducer";
+import { getNextMove } from "./Model/getNextMove";
 import { BackLink } from "./UI/BackLink/BackLink";
 import { GameCell } from "./UI/GameCell/GameCell";
 import { GameLayout } from "./UI/GameLayout/GameLayout";
@@ -11,17 +18,19 @@ import { GameTitle } from "./UI/GameTitle/GameTitle";
 import { PlayerInfo } from "./UI/PlayerInfo/PlayerInfo";
 
 export function Game() {
-    const {
+    const [{ cells, currentMove, winnerSequence, playersTimeOver }, dispatch] =
+        useReducer(gameStateReducer, initialGameState);
+
+    const nextMove = getNextMove(currentMove, PLAYERS_COUNT, playersTimeOver);
+
+    const players = PLAYERS.slice(0, PLAYERS_COUNT);
+
+    const winnerSymbol = computeWinnerSymbol(
         cells,
         currentMove,
         nextMove,
-        winnerSequence,
-        winnerSymbol,
-        onCellClickHandler,
-        onPlayersTimeOverHandler,
-    } = useGameState(PLAYERS_COUNT);
-
-    const players = PLAYERS.slice(0, PLAYERS_COUNT);
+        winnerSequence
+    );
 
     const winnerPlayer = PLAYERS.find(
         (player) => player.symbol === winnerSymbol
@@ -77,7 +86,7 @@ export function Game() {
                     const isWinner =
                         winnerSequence && winnerSequence.includes(i);
                     function onClick() {
-                        onCellClickHandler(i);
+                        dispatch(clickCellActionCreator(i));
                     }
                     return (
                         <GameCell

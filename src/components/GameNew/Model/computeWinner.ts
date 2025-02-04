@@ -1,11 +1,11 @@
 "use client";
-import { CellType, winnerSequenceType } from "@/types";
+import { CellType, WinnerSequenceType } from "@/types";
 
 export function computeWinner(
     cells: Array<CellType>,
     sequenceSize: number = 3,
     fieldSize: number = 19
-): winnerSequenceType {
+): WinnerSequenceType {
     function compareElements(indexes: Array<number>) {
         const symbol = cells[indexes[0]];
         return indexes.every((index) => cells[index] === symbol);

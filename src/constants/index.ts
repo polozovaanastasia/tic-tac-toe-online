@@ -26,9 +26,6 @@ export const MOVE_ORDER = [
     GAME_SYMBOL.TRIANGLE,
 ];
 
-export const CLICK_CELL = "CLICK-CELL";
-export const PLAYERS_TIME_OVER = "PLAYERS-TIME-OVER";
-
 export const PLAYERS_COUNT = 2;
 
 export const PLAYERS = [
@@ -65,3 +62,8 @@ export const PLAYERS = [
         avatar: "/images/avatar2.png",
     },
 ];
+
+export const GAME_STATE_ACTIONS = {
+    CLICK_CELL: "CLICK-CELL",
+    PLAYERS_TIME_OVER: "PLAYERS-TIME-OVER",
+} as const;
