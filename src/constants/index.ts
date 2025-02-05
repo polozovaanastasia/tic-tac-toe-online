@@ -27,6 +27,7 @@ export const MOVE_ORDER = [
 ];
 
 export const PLAYERS_COUNT = 2;
+export const DEFAULT_TIMER = 60000;
 
 export const PLAYERS = [
     {

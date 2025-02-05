@@ -1,15 +1,15 @@
+import { SymbolValueType } from "@/types";
 import classNames from "classnames";
-import styles from "./PlayerInfo.module.css";
 import Image from "next/image";
 import GameSymbol from "../GameSymbol/GameSymbol";
-import { SymbolValueType } from "@/types";
+import styles from "./PlayerInfo.module.css";
 
 type PlayerInfoPropsType = {
     name: string;
     rating: number;
     avatar: string;
     symbol: SymbolValueType;
-    seconds: number;
+    timer: number;
     isTimerRunning: boolean;
 };
 
@@ -18,9 +18,10 @@ export function PlayerInfo({
     rating,
     avatar,
     symbol,
-    seconds,
+    timer,
     isTimerRunning,
 }: PlayerInfoPropsType) {
+    const seconds = Math.ceil(timer / 1000);
     const isDanger = seconds <= 10;
 
     const playerTimeClasses = classNames(

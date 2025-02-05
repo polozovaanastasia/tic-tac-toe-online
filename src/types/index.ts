@@ -5,9 +5,13 @@ export type GameStateType = {
     currentMove: SymbolValueType;
     winnerSequence: Array<number> | false;
     playersTimeOver: Array<SymbolValueType>;
+    timers: {
+        [key in SymbolValueType]?: number;
+    };
 };
 
 export type WinnerSequenceType = GameStateType["winnerSequence"];
+export type TimersType = GameStateType["timers"];
 
 export type CellType = null | SymbolValueType;
 
