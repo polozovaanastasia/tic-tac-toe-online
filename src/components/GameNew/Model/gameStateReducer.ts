@@ -12,15 +12,18 @@ import { getNextMove } from "./getNextMove";
 type InitGameStateParamsType = {
     playersCount: number;
     defaultTimer: number;
+    currentMoveStart: number;
 };
 
 export function initGameState({
     playersCount,
     defaultTimer,
+    currentMoveStart,
 }: InitGameStateParamsType): GameStateType {
     return {
         cells: new Array(19 * 19).fill(null),
         currentMove: GAME_SYMBOL.ZERO,
+        currentMoveStart,
         winnerSequence: false,
         playersTimeOver: [],
         timers: MOVE_ORDER.slice(0, playersCount).reduce<TimersType>(
@@ -35,8 +38,9 @@ export function initGameState({
 export function gameStateReducer(state: GameStateType, action: GameActionType) {
     switch (action.type) {
         case GAME_STATE_ACTIONS.CLICK_CELL:
-            const { index } = action;
-            const { cells, currentMove, winnerSequence } = state;
+            const { index, now } = action;
+            const { cells, currentMove, winnerSequence, playersTimeOver } =
+                state;
 
             if (cells[index] || winnerSequence) return state;
             const cellsCopy = [...cells];
@@ -47,10 +51,11 @@ export function gameStateReducer(state: GameStateType, action: GameActionType) {
                 ...state,
                 cells: cellsCopy,
                 currentMove: getNextMove(
-                    state.currentMove,
+                    currentMove,
                     PLAYERS_COUNT,
-                    state.playersTimeOver
+                    playersTimeOver
                 ),
+                currentMoveStart: now,
                 winnerSequence: winnerIndexes,
             };
         case GAME_STATE_ACTIONS.PLAYERS_TIME_OVER:
@@ -77,9 +82,13 @@ export function playersTimeOverActionCreator(
     };
 }
 
-export function clickCellActionCreator(index: number): GameActionType {
+export function clickCellActionCreator(
+    index: number,
+    now: number
+): GameActionType {
     return {
         type: GAME_STATE_ACTIONS.CLICK_CELL,
         index,
+        now,
     };
 }

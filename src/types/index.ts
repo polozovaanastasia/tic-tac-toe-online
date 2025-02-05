@@ -3,6 +3,7 @@ import { GAME_STATE_ACTIONS } from "@/constants";
 export type GameStateType = {
     cells: Array<CellType>;
     currentMove: SymbolValueType;
+    currentMoveStart: number;
     winnerSequence: Array<number> | false;
     playersTimeOver: Array<SymbolValueType>;
     timers: {
@@ -33,7 +34,7 @@ export type SymbolType = {
 export type SymbolValueType = SymbolType[keyof SymbolType];
 
 export type GameActionType =
-    | { type: typeof GAME_STATE_ACTIONS.CLICK_CELL; index: number }
+    | { type: typeof GAME_STATE_ACTIONS.CLICK_CELL; index: number; now: number }
     | {
           type: typeof GAME_STATE_ACTIONS.PLAYERS_TIME_OVER;
           symbol: SymbolValueType;

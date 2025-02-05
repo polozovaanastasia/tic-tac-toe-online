@@ -1,6 +1,7 @@
 import { DEFAULT_TIMER, PLAYERS, PLAYERS_COUNT, SIZES } from "@/constants";
 import { useReducer } from "react";
 import UIButton from "../uikit/UIButton/UIButton";
+import { computePlayerTimer } from "./Model/computePlayerTimer";
 import { computeWinnerSymbol } from "./Model/computeWinnerSymbol";
 import {
     clickCellActionCreator,
@@ -19,11 +20,22 @@ import { PlayerInfo } from "./UI/PlayerInfo/PlayerInfo";
 
 export function Game() {
     const [
-        { cells, currentMove, winnerSequence, playersTimeOver, timers },
+        {
+            cells,
+            currentMove,
+            currentMoveStart,
+            winnerSequence,
+            playersTimeOver,
+            timers,
+        },
         dispatch,
     ] = useReducer(
         gameStateReducer,
-        { playersCount: PLAYERS_COUNT, defaultTimer: DEFAULT_TIMER },
+        {
+            playersCount: PLAYERS_COUNT,
+            defaultTimer: DEFAULT_TIMER,
+            currentMoveStart: Date.now(),
+        },
         initGameState
     );
 
@@ -40,6 +52,7 @@ export function Game() {
     const winnerPlayer = PLAYERS.find(
         (player) => player.symbol === winnerSymbol
     );
+
     return (
         <>
             <GameLayout
@@ -52,17 +65,25 @@ export function Game() {
                         timeMode={"1 минута на ход"}
                     />
                 }
-                playerList={players.map((player) => (
-                    <PlayerInfo
-                        key={player.id}
-                        name={player.name}
-                        rating={player.rating}
-                        symbol={player.symbol}
-                        timer={timers[player.symbol] ?? DEFAULT_TIMER}
-                        avatar={player.avatar}
-                        isTimerRunning={false}
-                    />
-                ))}
+                playerList={players.map((player) => {
+                    const { timer, timerStartAt } = computePlayerTimer(
+                        player.symbol,
+                        currentMove,
+                        timers,
+                        currentMoveStart
+                    );
+                    return (
+                        <PlayerInfo
+                            key={player.id}
+                            name={player.name}
+                            rating={player.rating}
+                            symbol={player.symbol}
+                            avatar={player.avatar}
+                            timer={timer}
+                            timerStartAt={timerStartAt}
+                        />
+                    );
+                })}
                 steps={
                     <GameMoveInfo
                         currentMove={currentMove}
@@ -91,7 +112,8 @@ export function Game() {
                     const isWinner =
                         winnerSequence && winnerSequence.includes(i);
                     function onClick() {
-                        dispatch(clickCellActionCreator(i));
+                        const now = Date.now();
+                        dispatch(clickCellActionCreator(i, now));
                     }
                     return (
                         <GameCell
@@ -113,7 +135,6 @@ export function Game() {
                         symbol={player.symbol}
                         timer={timers[player.symbol] ?? DEFAULT_TIMER}
                         avatar={player.avatar}
-                        isTimerRunning={false}
                     />
                 ))}
                 onClose={() => {}}

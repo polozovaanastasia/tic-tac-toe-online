@@ -10,7 +10,7 @@ type PlayerInfoPropsType = {
     avatar: string;
     symbol: SymbolValueType;
     timer: number;
-    isTimerRunning: boolean;
+    timerStartAt?: number;
 };
 
 export function PlayerInfo({
@@ -19,14 +19,17 @@ export function PlayerInfo({
     avatar,
     symbol,
     timer,
-    isTimerRunning,
+    timerStartAt,
 }: PlayerInfoPropsType) {
+    if (timerStartAt) {
+        console.log(symbol, timerStartAt);
+    }
     const seconds = Math.ceil(timer / 1000);
     const isDanger = seconds <= 10;
 
     const playerTimeClasses = classNames(
         styles["player__time"],
-        isTimerRunning && styles["player__time_active"],
+        timerStartAt && styles["player__time_active"],
         isDanger ? styles[`time_warning`] : ""
     );
 
