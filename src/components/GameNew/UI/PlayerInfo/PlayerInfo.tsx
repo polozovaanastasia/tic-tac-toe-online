@@ -1,6 +1,7 @@
 import { SymbolValueType } from "@/types";
 import classNames from "classnames";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import GameSymbol from "../GameSymbol/GameSymbol";
 import styles from "./PlayerInfo.module.css";
 
@@ -21,10 +22,13 @@ export function PlayerInfo({
     timer,
     timerStartAt,
 }: PlayerInfoPropsType) {
-    if (timerStartAt) {
-        console.log(symbol, timerStartAt);
-    }
-    const seconds = Math.ceil(timer / 1000);
+    const now = useNow(1000, !!timerStartAt);
+    const mils = Math.max(
+        now && timerStartAt ? timer - (now - timerStartAt) : timer,
+        0
+    );
+    const seconds = Math.ceil(mils / 1000);
+
     const isDanger = seconds <= 10;
 
     const playerTimeClasses = classNames(
@@ -66,4 +70,23 @@ export function PlayerInfo({
             </div>
         </div>
     );
+}
+
+function useNow(interval: number, enabled: boolean) {
+    const [now, setNow] = useState<number | undefined>(undefined);
+
+    useEffect(() => {
+        if (!enabled) {
+            setNow(undefined);
+            return;
+        }
+        const int = setInterval(() => {
+            setNow(Date.now());
+        }, interval);
+
+        return () => {
+            clearInterval(int);
+        };
+    }, [interval, enabled]);
+    return now;
 }

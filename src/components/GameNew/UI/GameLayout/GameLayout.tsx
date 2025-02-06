@@ -8,7 +8,6 @@ type GameLayoutPropsType = {
     steps: React.ReactNode;
     actions: React.ReactNode;
     gameCells: React.ReactNode;
-    // gameOverModal: React.ReactNode;
 };
 
 export function GameLayout({
@@ -19,8 +18,7 @@ export function GameLayout({
     steps,
     actions,
     gameCells,
-}: // gameOverModal,
-GameLayoutPropsType) {
+}: GameLayoutPropsType) {
     return (
         <>
             <div className={styles["game-title"]}>

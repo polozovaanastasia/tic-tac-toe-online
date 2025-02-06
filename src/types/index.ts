@@ -7,7 +7,7 @@ export type GameStateType = {
     winnerSequence: Array<number> | false;
     playersTimeOver: Array<SymbolValueType>;
     timers: {
-        [key in SymbolValueType]?: number;
+        [key in SymbolValueType]: number;
     };
 };
 

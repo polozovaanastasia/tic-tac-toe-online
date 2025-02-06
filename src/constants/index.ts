@@ -1,4 +1,4 @@
-import { SizesType, SymbolType } from "@/types";
+import { SizesType, SymbolType, SymbolValueType } from "@/types";
 
 export const SIZES: SizesType = {
     LARGE: "lg",
@@ -19,7 +19,7 @@ export const GAME_SYMBOL: SymbolType = {
     TRIANGLE: "triangle",
 };
 
-export const MOVE_ORDER = [
+export const MOVE_ORDER: Array<SymbolValueType> = [
     GAME_SYMBOL.ZERO,
     GAME_SYMBOL.CROSS,
     GAME_SYMBOL.SQUARE,
@@ -27,7 +27,7 @@ export const MOVE_ORDER = [
 ];
 
 export const PLAYERS_COUNT = 2;
-export const DEFAULT_TIMER = 60000;
+export const DEFAULT_TIMER = 20000;
 
 export const PLAYERS = [
     {

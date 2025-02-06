@@ -5,9 +5,9 @@ import { computePlayerTimer } from "./Model/computePlayerTimer";
 import { computeWinnerSymbol } from "./Model/computeWinnerSymbol";
 import {
     clickCellActionCreator,
-    gameStateReducer,
+    gameReducer,
     initGameState,
-} from "./Model/gameStateReducer";
+} from "./Model/gameReducer";
 import { getNextMove } from "./Model/getNextMove";
 import { BackLink } from "./UI/BackLink/BackLink";
 import { GameCell } from "./UI/GameCell/GameCell";
@@ -20,17 +20,10 @@ import { PlayerInfo } from "./UI/PlayerInfo/PlayerInfo";
 
 export function Game() {
     const [
-        {
-            cells,
-            currentMove,
-            currentMoveStart,
-            winnerSequence,
-            playersTimeOver,
-            timers,
-        },
+        { cells, currentMove, currentMoveStart, winnerSequence, timers },
         dispatch,
     ] = useReducer(
-        gameStateReducer,
+        gameReducer,
         {
             playersCount: PLAYERS_COUNT,
             defaultTimer: DEFAULT_TIMER,
@@ -39,7 +32,7 @@ export function Game() {
         initGameState
     );
 
-    const nextMove = getNextMove(currentMove, PLAYERS_COUNT, playersTimeOver);
+    const nextMove = getNextMove(currentMove, PLAYERS_COUNT, timers);
 
     const winnerSymbol = computeWinnerSymbol(
         cells,
@@ -80,7 +73,9 @@ export function Game() {
                             symbol={player.symbol}
                             avatar={player.avatar}
                             timer={timer}
-                            timerStartAt={timerStartAt}
+                            timerStartAt={
+                                winnerSymbol ? undefined : timerStartAt
+                            }
                         />
                     );
                 })}
