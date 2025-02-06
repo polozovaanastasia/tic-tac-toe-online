@@ -1,7 +1,7 @@
 import { SIZES } from "@/constants";
 import { SymbolValueType } from "@/types";
 import classNames from "classnames";
-import GameSymbol from "../GameSymbol/GameSymbol";
+import { GameSymbol } from "../GameSymbol/GameSymbol";
 import styles from "./GameCell.module.css";
 
 type GameCellPropsType = {

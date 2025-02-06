@@ -36,6 +36,6 @@ export type SymbolValueType = SymbolType[keyof SymbolType];
 export type GameActionType =
     | { type: typeof GAME_STATE_ACTIONS.CLICK_CELL; index: number; now: number }
     | {
-          type: typeof GAME_STATE_ACTIONS.PLAYERS_TIME_OVER;
-          symbol: SymbolValueType;
+          type: typeof GAME_STATE_ACTIONS.TICK;
+          now: number;
       };

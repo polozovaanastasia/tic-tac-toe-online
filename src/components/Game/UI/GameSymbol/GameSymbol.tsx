@@ -10,7 +10,10 @@ type GameSymbolPropsType = {
     size?: SizesValueType;
 };
 
-function GameSymbol({ symbol, size = SIZES.SMALL }: GameSymbolPropsType) {
+export function GameSymbol({
+    symbol,
+    size = SIZES.SMALL,
+}: GameSymbolPropsType) {
     const Icon = {
         [GAME_SYMBOL.ZERO]: ZeroIcon,
         [GAME_SYMBOL.CROSS]: CrossIcon,
@@ -21,5 +24,3 @@ function GameSymbol({ symbol, size = SIZES.SMALL }: GameSymbolPropsType) {
 
     return <Icon {...iconProps} />;
 }
-
-export default GameSymbol;

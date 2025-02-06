@@ -1,5 +1,6 @@
 import { DEFAULT_TIMER, PLAYERS, PLAYERS_COUNT, SIZES } from "@/constants";
 import { useReducer } from "react";
+import { useInterval } from "../lib/timers";
 import UIButton from "../uikit/UIButton/UIButton";
 import { computePlayerTimer } from "./Model/computePlayerTimer";
 import { computeWinnerSymbol } from "./Model/computeWinnerSymbol";
@@ -7,6 +8,7 @@ import {
     clickCellActionCreator,
     gameReducer,
     initGameState,
+    tickActionCreator,
 } from "./Model/gameReducer";
 import { getNextMove } from "./Model/getNextMove";
 import { BackLink } from "./UI/BackLink/BackLink";
@@ -40,6 +42,10 @@ export function Game() {
         nextMove,
         winnerSequence
     );
+
+    useInterval(1000, !!currentMoveStart && !winnerSymbol, () => {
+        dispatch(tickActionCreator(Date.now()));
+    });
 
     const players = PLAYERS.slice(0, PLAYERS_COUNT);
     const winnerPlayer = PLAYERS.find(

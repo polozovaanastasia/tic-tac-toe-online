@@ -1,5 +1,5 @@
 "use client";
-import { Game } from "@/components/GameNew/Game";
+import { Game } from "@/components/Game/Game";
 import Header from "@/components/Header/Header";
 import styles from "./page.module.css";
 

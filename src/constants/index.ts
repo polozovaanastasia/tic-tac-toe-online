@@ -66,5 +66,5 @@ export const PLAYERS = [
 
 export const GAME_STATE_ACTIONS = {
     CLICK_CELL: "CLICK-CELL",
-    PLAYERS_TIME_OVER: "PLAYERS-TIME-OVER",
+    TICK: "TICK",
 } as const;

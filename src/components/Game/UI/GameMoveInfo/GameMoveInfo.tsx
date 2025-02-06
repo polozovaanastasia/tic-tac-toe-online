@@ -1,7 +1,7 @@
 import { SIZES } from "@/constants";
-import GameSymbol from "../GameSymbol/GameSymbol";
-import styles from "./GameMoveInfo.module.css";
 import { SymbolValueType } from "@/types";
+import { GameSymbol } from "../GameSymbol/GameSymbol";
+import styles from "./GameMoveInfo.module.css";
 
 type GameMoveInfoPropsType = {
     currentMove: SymbolValueType;

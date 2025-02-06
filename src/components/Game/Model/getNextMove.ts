@@ -1,6 +1,6 @@
 import { MOVE_ORDER } from "@/constants";
 import { SymbolValueType } from "@/types";
-import { TimersType } from "./../../../types/index";
+import { TimersType } from "../../../types/index";
 
 export function getNextMove(
     currentMove: SymbolValueType,

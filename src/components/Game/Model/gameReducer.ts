@@ -36,7 +36,7 @@ export function initGameState({
 }
 export function gameReducer(state: GameStateType, action: GameActionType) {
     switch (action.type) {
-        case GAME_STATE_ACTIONS.CLICK_CELL:
+        case GAME_STATE_ACTIONS.CLICK_CELL: {
             const { index, now } = action;
             const { cells, currentMove, winnerSequence, timers } = state;
 
@@ -52,12 +52,19 @@ export function gameReducer(state: GameStateType, action: GameActionType) {
                 currentMoveStart: now,
                 winnerSequence: winnerIndexes,
             };
-        // case GAME_STATE_ACTIONS.PLAYERS_TIME_OVER:
-        //     return {
-        //         ...state,
-        //         playersTimeOver: [...state.playersTimeOver, action.symbol],
-        //         currentMove: getNextMove(state.currentMove, PLAYERS_COUNT, timer),
-        //     };
+        }
+        case GAME_STATE_ACTIONS.TICK: {
+            const { now } = action;
+            const { currentMove, timers } = state;
+
+            if (!isTimerOver(state, now)) return state;
+            return {
+                ...state,
+                currentMove: getNextMove(currentMove, PLAYERS_COUNT, timers),
+                timers: updateTimer(state, now),
+                currentMoveStart: now,
+            };
+        }
         default:
             return state;
     }
@@ -66,6 +73,7 @@ export function gameReducer(state: GameStateType, action: GameActionType) {
 function updateTimer(state: GameStateType, now: number) {
     const diff = now - state.currentMoveStart;
     const timer = state.timers[state.currentMove];
+
     return { ...state.timers, [state.currentMove]: timer - diff };
 }
 
@@ -79,14 +87,17 @@ function updateCells(
     return cellsCopy;
 }
 
-// export function playersTimeOverActionCreator(
-//     symbol: SymbolValueType
-// ): GameActionType {
-//     return {
-//         type: GAME_STATE_ACTIONS.PLAYERS_TIME_OVER,
-//         symbol,
-//     };
-// }
+function isTimerOver(state: GameStateType, now: number): boolean {
+    const timer = updateTimer(state, now)[state.currentMove];
+    return timer <= 0;
+}
+
+export function tickActionCreator(now: number): GameActionType {
+    return {
+        type: GAME_STATE_ACTIONS.TICK,
+        now,
+    };
+}
 
 export function clickCellActionCreator(
     index: number,
