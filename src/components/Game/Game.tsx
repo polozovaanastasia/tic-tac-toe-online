@@ -1,5 +1,5 @@
 import { DEFAULT_TIMER, PLAYERS, PLAYERS_COUNT, SIZES } from "@/constants";
-import { useReducer } from "react";
+import { useCallback, useReducer } from "react";
 import { useInterval } from "../lib/timers";
 import UIButton from "../uikit/UIButton/UIButton";
 import { computePlayerTimer } from "./Model/computePlayerTimer";
@@ -43,14 +43,23 @@ export function Game() {
         winnerSequence
     );
 
-    useInterval(1000, !!currentMoveStart && !winnerSymbol, () => {
-        dispatch(tickActionCreator(Date.now()));
-    });
+    useInterval(
+        1000,
+        !!currentMoveStart && !winnerSymbol,
+        useCallback((now) => {
+            dispatch(tickActionCreator(now));
+        }, [])
+    );
 
     const players = PLAYERS.slice(0, PLAYERS_COUNT);
     const winnerPlayer = PLAYERS.find(
         (player) => player.symbol === winnerSymbol
     );
+
+    const onClickHandler = useCallback(function onClickHandler(i: number) {
+        const now = Date.now();
+        dispatch(clickCellActionCreator(i, now));
+    }, []);
 
     return (
         <>
@@ -112,16 +121,13 @@ export function Game() {
                 gameCells={cells.map((cell, i) => {
                     const isWinner =
                         winnerSequence && winnerSequence.includes(i);
-                    function onClick() {
-                        const now = Date.now();
-                        dispatch(clickCellActionCreator(i, now));
-                    }
                     return (
                         <GameCell
                             key={i}
+                            index={i}
                             symbol={cell}
                             isWinner={isWinner}
-                            onClick={onClick}
+                            onClick={onClickHandler}
                         ></GameCell>
                     );
                 })}

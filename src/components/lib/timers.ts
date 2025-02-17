@@ -22,20 +22,18 @@ export function useNow(interval: number, enabled: boolean) {
 export function useInterval(
     interval: number,
     enabled: boolean,
-    cb: () => void
+    cb: (now: number) => void
 ) {
     useEffect(() => {
         if (!enabled) {
             return;
         }
         const int = setInterval(() => {
-            cb();
+            cb(Date.now());
         }, interval);
 
         return () => {
             clearInterval(int);
         };
-        // todo: useCallback
-        //eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [interval, enabled]);
+    }, [interval, enabled, cb]);
 }

@@ -10,7 +10,6 @@ export function computeWinner(
         const symbol = cells[indexes[0]];
         return indexes.every((index) => cells[index] === symbol);
     }
-
     function getSequenceIndexes(i: number) {
         const res: Array<Array<number>> = [
             [], // -
